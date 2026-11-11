@@ -63,3 +63,8 @@ Así las fases de la web y las del backend quedan en un solo proyecto.
 - ¿El **Pack de Planificación** también se paga al aceptar, o por adelantado?
 - Teléfono de la asesora para los avisos de WhatsApp (va en `.env`, no en el repositorio).
 - ¿Hay ya una cuenta de Meta Business con número verificado para la WhatsApp Cloud API?
+
+## Formulario conectado a Google Apps Script
+- `index.html` envía el formulario (3 pasos) a la aplicación web de Apps Script de `integraciones/google-apps-script/` mediante `conexion-formulario.js`. Esta guarda la solicitud en Google Sheets y Notion, envía la confirmación al cliente y avisa a la asesora.
+- La web sigue ya el flujo «propuesta en menos de 48 horas, solo pagas si la aceptas»: el formulario no cobra nada.
+- Falta: el Pack de Planificación no está en el formulario ni en las opciones de Notion (`Paquete`); se añadirá cuando se sepa qué incluye.

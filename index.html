@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exploryaa – Travel Online Agency | Tú sueñas el viaje, nosotros lo hacemos realidad</title>
-  <meta name="description" content="Exploryaa es la agencia de viajes online impulsada por IA. Cuéntanos tu idea, elige tu paquete y recibe en minutos tus vuelos, hotel e itinerario personalizado en tu correo." />
+  <meta name="description" content="Exploryaa es la agencia de viajes online impulsada por IA. Cuéntanos tu idea y en menos de 48 horas recibirás una propuesta personalizada con vuelos, alojamiento, experiencias e itinerario. Solo pagas si te convence." />
   <meta name="theme-color" content="#0B0B0B" />
   <meta property="og:title" content="Exploryaa – Travel Online Agency" />
-  <meta property="og:description" content="Tú sueñas el viaje, nosotros lo hacemos realidad. Reservas e itinerario personalizado en minutos." />
+  <meta property="og:description" content="Tú sueñas el viaje, nosotros lo hacemos realidad. Tu propuesta de viaje personalizada en menos de 48 horas." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -290,7 +290,47 @@
     /* =========================================================
        FORMULARIO
        ========================================================= */
-    .form-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; }
+    [hidden] { display: none !important; }
+    .form-wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr); gap: 40px; align-items: start; }
+    .paso { border: 0; margin: 0; padding: 0; min-width: 0; }
+    .paso legend { padding: 0; }
+    .paso legend:focus { outline: none; }
+    .stepper { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 28px; }
+    .stepper li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; color: #6b6b6b; padding-top: 12px; border-top: 3px solid #ececec; }
+    .stepper li span { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 0.78rem; background: #ececec; color: #3d3d3d; flex-shrink: 0; }
+    .stepper li.active { color: var(--black); border-top-color: var(--gold); }
+    .stepper li.active span { background: var(--black); color: var(--gold); }
+    .stepper li.done { color: var(--black); border-top-color: var(--black); }
+    .stepper li.done span { background: var(--gold); color: var(--black); }
+    .form-error { background: #FDECEA; border: 1px solid #F5C2BD; color: #8A1F13; padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 0.9rem; }
+    .field .opt, .field label .opt { font-weight: 400; color: #6b6b6b; }
+    .inline-check--field { margin: -4px 0 20px; }
+    .counter { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #dcdcdc; border-radius: 999px; background: #fafafa; padding: 4px; width: max-content; }
+    .counter button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--white); font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--black); box-shadow: 0 1px 3px rgba(0,0,0,0.12); transition: background .2s; }
+    .counter button:hover:not(:disabled) { background: #FBF7EA; }
+    .counter button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .counter output { min-width: 2.5ch; text-align: center; font-weight: 700; font-size: 1.05rem; }
+    .pkg-option--wide { grid-column: 1 / -1; }
+    .pill span { min-height: 44px; }
+    .form-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+    .form-nav .btn--gold { margin-left: auto; }
+    .btn--back { border-color: #cfcfcf; color: var(--black); background: var(--white); }
+    .btn--back:hover { border-color: var(--black); }
+    .consent { margin-bottom: 0; }
+    .rgpd { font-size: 0.78rem; line-height: 1.5; color: #4a4a4a; background: #fafafa; border: 1px solid #eee; border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 22px; display: grid; gap: 6px; }
+    .rgpd div { display: grid; grid-template-columns: 110px 1fr; gap: 10px; }
+    .rgpd dt { font-weight: 700; color: var(--black); }
+    .success-id { font-weight: 700; color: var(--black) !important; }
+    .form-success:focus { outline: none; }
+    .trip-summary { position: sticky; top: calc(var(--header-h) + 24px); background: var(--black); color: var(--white); border-radius: 24px; padding: 30px 28px; border: 1px solid rgba(212,175,55,0.45); }
+    .trip-summary h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 18px; color: var(--gold); }
+    .trip-summary dl { display: grid; gap: 0; }
+    .trip-summary dl div { display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+    .trip-summary dt { color: var(--grey); }
+    .trip-summary dd { font-weight: 600; overflow-wrap: anywhere; }
+    .trip-summary__price { margin-top: 20px; color: #cfcfcf; font-size: 0.85rem; }
+    .trip-summary__price strong { font-family: var(--font-display); font-size: 2rem; color: var(--gold); }
+    .trip-summary__note { margin-top: 12px; font-size: 0.8rem; color: var(--grey); }
     .form-aside { position: sticky; top: calc(var(--header-h) + 30px); }
     .form-aside__img {
       height: 300px; border-radius: var(--radius); margin: 32px 0 28px; background-size: cover; background-position: center;
@@ -546,8 +586,7 @@
       .steps::before { top: 0; bottom: 0; left: 50%; right: auto; width: 1px; height: auto; background: repeating-linear-gradient(180deg, var(--gold) 0 8px, transparent 8px 16px); opacity: 0.35; }
       .step { background: var(--white); padding: 10px 0; }
       .form-wrap, .faq-wrap { grid-template-columns: 1fr; gap: 40px; }
-      .form-aside { position: static; }
-      .form-aside__img { height: 220px; }
+      .trip-summary { position: static; }
       .testimonials { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
@@ -559,6 +598,9 @@
       .packages { grid-template-columns: 1fr; }
       .trip-form { padding: 26px 18px; border-radius: 20px; }
       .grid-2, .pkg-select { grid-template-columns: 1fr; gap: 0; }
+      .stepper li { font-size: 0.78rem; flex-direction: column; align-items: flex-start; gap: 6px; }
+      .rgpd div { grid-template-columns: 1fr; gap: 2px; }
+      .form-nav .btn { flex: 1; }
       .pkg-select { gap: 10px; }
       .extras { padding: 24px 20px; }
       .footer__grid { grid-template-columns: 1fr; gap: 36px; }
@@ -638,14 +680,14 @@
         <div class="hero__content">
           <div class="hero__badge reveal"><b>IA</b> Agencia de viajes online 100% impulsada por inteligencia artificial</div>
           <h1 class="reveal d1">Tú sueñas el viaje,<br/><em>nosotros lo hacemos realidad.</em></h1>
-          <p class="lead reveal d2">Cuéntanos tu idea, elige tu paquete y en minutos recibirás en tu correo tus vuelos, tu hotel y un itinerario hecho solo para ti. Sin buscar. Sin comparar. Sin perder ni una tarde.</p>
+          <p class="lead reveal d2">Cuéntanos tu idea y en menos de 48 horas recibirás en tu correo una propuesta con vuelos, alojamiento, experiencias y un itinerario hecho solo para ti. Sin buscar. Sin comparar. Y solo pagas si te convence.</p>
           <div class="hero__actions reveal d3">
             <a href="#disena" class="btn btn--gold">Diseña mi viaje <svg><use href="#i-arrow"/></svg></a>
             <a href="#como-funciona" class="btn btn--ghost">Ver cómo funciona</a>
           </div>
           <div class="hero__stats reveal d4">
-            <div><strong>Minutos</strong><span>no días, para tenerlo todo listo</span></div>
-            <div><strong>1 precio</strong><span>único por persona, sin sorpresas</span></div>
+            <div><strong>48 h</strong><span>para recibir tu propuesta</span></div>
+            <div><strong>0 €</strong><span>hasta que aceptas la propuesta</span></div>
             <div><strong>0 búsquedas</strong><span>nosotros lo hacemos todo</span></div>
           </div>
         </div>
@@ -679,14 +721,14 @@
             <p>Rellena nuestro formulario inteligente: a dónde (o «sorpréndeme»), cuándo, con quién y cómo te gusta viajar. Dos minutos, como hablar con un amigo.</p>
           </article>
           <article class="step reveal d2">
-            <div class="step__icon"><svg><use href="#i-card"/></svg><span class="step__num">2</span></div>
-            <h3>Elige tu paquete y paga</h3>
-            <p>Escoge el paquete que encaja contigo y paga un precio único por persona. Sin comisiones ocultas ni letra pequeña.</p>
+            <div class="step__icon"><svg><use href="#i-mail"/></svg><span class="step__num">2</span></div>
+            <h3>Recibe tu propuesta</h3>
+            <p>En menos de 48 horas te enviamos por correo vuelos, alojamiento, experiencias e itinerario día a día. Una persona del equipo la revisa antes.</p>
           </article>
           <article class="step reveal d4">
-            <div class="step__icon"><svg><use href="#i-mail"/></svg><span class="step__num">3</span></div>
-            <h3>Recíbelo en tu correo</h3>
-            <p>En minutos tendrás en tu bandeja de entrada tus reservas de vuelos y hotel y un itinerario personalizado listo para disfrutar.</p>
+            <div class="step__icon"><svg><use href="#i-plane"/></svg><span class="step__num">3</span></div>
+            <h3>Acepta y viaja</h3>
+            <p>Si te convence, la aceptas y pagas. Nosotros hacemos las reservas y tú solo tienes que hacer la maleta.</p>
           </article>
         </div>
 
@@ -814,196 +856,273 @@
     </div>
 
     <!-- =====================================================
-         5. FORMULARIO
+         5. FORMULARIO (3 pasos + resumen en vivo)
+         Envía los datos a Google Apps Script mediante
+         enviarSolicitud() de conexion-formulario.js
          ===================================================== -->
     <section class="section section--light" id="disena">
       <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Diseña tu viaje</span>
+          <h2 class="section-title reveal d1">Cuéntanos tu <em>viaje ideal</em></h2>
+          <p class="section-lead reveal d2">Tres pasos y unos dos minutos. En menos de 48 horas recibirás en tu correo una propuesta personalizada. Pedirla es gratis y solo pagas si te convence.</p>
+        </div>
+
         <div class="form-wrap">
-          <aside class="form-aside">
-            <span class="eyebrow reveal">Diseña tu viaje</span>
-            <h2 class="section-title reveal d1">Cuéntanos tu <em>viaje ideal</em></h2>
-            <p class="section-lead reveal d2">Cuanto más nos cuentes, más tuyo será el viaje. Nuestra IA lo convierte en reservas reales y un plan día a día.</p>
-            <div class="form-aside__img reveal" role="img" aria-label="Viajera planificando sobre un mapa (foto de ejemplo)"></div>
-            <ul class="perks reveal">
-              <li><svg><use href="#i-clock"/></svg><span>Reservas e itinerario en tu correo <strong>en minutos</strong>.</span></li>
-              <li><svg><use href="#i-lock"/></svg><span>Pago único y seguro. Sin comisiones ocultas.</span></li>
-              <li><svg><use href="#i-heart"/></svg><span>Revisiones incluidas para que todo quede a tu gusto.</span></li>
-              <li><svg><use href="#i-compass"/></svg><span>¿No sabes a dónde ir? Marca «Sorpréndeme».</span></li>
-            </ul>
-          </aside>
+          <form class="trip-form reveal" id="tripForm" novalidate aria-describedby="aiNotice">
+            <div class="ai-notice" id="aiNotice" role="note">
+              <svg><use href="#i-sparkle"/></svg>
+              <p><strong>Formulario con inteligencia artificial.</strong> Usamos un sistema de IA para preparar tu propuesta de viaje con los datos que nos des. Una persona del equipo la revisa antes de enviártela.</p>
+            </div>
 
-          <div class="reveal d1">
-            <!--
-              =========================================================
-              FORMULARIO PREPARADO PARA INTEGRACIONES
-              - Configura el endpoint en EXPLORYAA_CONFIG (al final del archivo).
-              - Envía JSON a tu backend / Make / Zapier / n8n / webhook.
-              - Si la respuesta incluye { "checkoutUrl": "..." } redirige al pago
-                (Stripe Checkout, PayPal, Redsys...).
-              - Los campos ocultos package_id, package_price y total_estimate
-                facilitan la creación de la sesión de pago.
-              =========================================================
-            -->
-            <form class="trip-form" id="tripForm" novalidate
-                  action="#" method="post"
-                  data-endpoint=""
-                  aria-describedby="aiNotice">
+            <ol class="stepper" id="stepper" aria-label="Pasos del formulario">
+              <li class="active" aria-current="step"><span>1</span>Tu viaje</li>
+              <li><span>2</span>Preferencias</li>
+              <li><span>3</span>Tus datos</li>
+            </ol>
 
-              <div class="ai-notice" id="aiNotice" role="note">
-                <svg><use href="#i-sparkle"/></svg>
-                <p><strong>Formulario con inteligencia artificial.</strong> La información que nos des será procesada por un sistema de IA para generar propuestas de viaje y reservas. Un agente humano revisa cada pedido antes de confirmarlo.</p>
-              </div>
+            <div class="form-error" id="formError" role="alert" hidden></div>
 
-              <div class="form-progress" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+            <div id="formFields">
+              <!-- ===== PASO 1: TU VIAJE ===== -->
+              <fieldset class="paso" data-paso="1">
+                <legend class="fieldset-title"><b>1</b> Tu viaje</legend>
 
-              <div id="formFields">
-                <!-- Paso 1: Tus datos -->
-                <h3 class="fieldset-title"><b>1</b> Tus datos</h3>
-                <div class="grid-2">
-                  <div class="field">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="¿Cómo te llamas?" required />
-                    <span class="error">Dinos tu nombre, por favor.</span>
-                  </div>
-                  <div class="field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" autocomplete="email" placeholder="tu@correo.com" required />
-                    <span class="error">Necesitamos un email válido para enviarte tus reservas.</span>
-                  </div>
-                </div>
-
-                <!-- Paso 2: Paquete -->
-                <h3 class="fieldset-title"><b>2</b> Tu paquete</h3>
-                <div class="field" id="packageField">
-                  <span class="label" id="pkgLabel">Paquete elegido</span>
+                <div class="field" id="campoPaquete">
+                  <span class="label" id="pkgLabel">Paquete *</span>
                   <div class="pkg-select" role="radiogroup" aria-labelledby="pkgLabel">
                     <div class="pkg-option">
-                      <input type="radio" name="paquete" id="p-mini" value="mini" data-price="199" data-name="Mini Escapada 2D1N" required />
+                      <input type="radio" name="paquete" id="p-mini" value="Mini Escapada 2D1N" data-price="199" />
                       <label for="p-mini"><strong>Mini Escapada 2D1N</strong><span>2 días · 1 noche</span><em>199 €</em></label>
                     </div>
                     <div class="pkg-option">
-                      <input type="radio" name="paquete" id="p-express" value="express" data-price="449" data-name="Itinerario Express" />
+                      <input type="radio" name="paquete" id="p-express" value="Itinerario Express" data-price="449" />
                       <label for="p-express"><strong>Itinerario Express</strong><span>2-5 días</span><em>449 €</em></label>
                     </div>
                     <div class="pkg-option">
-                      <input type="radio" name="paquete" id="p-completo" value="completo" data-price="1290" data-name="Viaje Completo" />
+                      <input type="radio" name="paquete" id="p-completo" value="Viaje Completo" data-price="1290" />
                       <label for="p-completo"><strong>Viaje Completo ★</strong><span>5-10 días · Más popular</span><em>1.290 €</em></label>
                     </div>
                     <div class="pkg-option">
-                      <input type="radio" name="paquete" id="p-premium" value="premium" data-price="2990" data-name="Exploryaa Premium" />
+                      <input type="radio" name="paquete" id="p-premium" value="Exploryaa Premium" data-price="2990" />
                       <label for="p-premium"><strong>Exploryaa Premium</strong><span>10-21 días · A medida</span><em>2.990 €</em></label>
                     </div>
+                    <div class="pkg-option pkg-option--wide">
+                      <input type="radio" name="paquete" id="p-nose" value="Aún no lo sé" />
+                      <label for="p-nose"><strong>Aún no lo sé</strong><span>Te recomendamos el que mejor encaje</span></label>
+                    </div>
                   </div>
-                  <span class="error">Elige un paquete para continuar.</span>
+                  <span class="error">Elige un paquete, o «Aún no lo sé».</span>
                 </div>
 
-                <!-- Paso 3: Tu viaje -->
-                <h3 class="fieldset-title"><b>3</b> Tu viaje</h3>
+                <div class="field">
+                  <span class="label" id="vueloLabel">Tipo de vuelo *</span>
+                  <div class="pill-group" role="radiogroup" aria-labelledby="vueloLabel">
+                    <label class="pill"><input type="radio" name="vuelo" value="Ida y vuelta" checked /><span>Ida y vuelta</span></label>
+                    <label class="pill"><input type="radio" name="vuelo" value="Solo ida" /><span>Solo ida</span></label>
+                  </div>
+                </div>
+
                 <div class="grid-2">
                   <div class="field">
-                    <label for="origen">Origen</label>
-                    <input type="text" id="origen" name="origen" placeholder="Ej. Madrid" required />
-                    <span class="error">¿Desde dónde sales?</span>
+                    <label for="origen">Origen *</label>
+                    <input type="text" id="origen" name="origen" placeholder="Ej. Madrid" autocomplete="address-level2" maxlength="100" />
+                    <span class="error">Dinos desde dónde sales.</span>
                   </div>
                   <div class="field">
-                    <label for="destino">Destino</label>
-                    <input type="text" id="destino" name="destino" placeholder="Ej. Lisboa, Japón…" required />
-                    <label class="inline-check"><input type="checkbox" id="sorprendeme" name="sorprendeme" value="si" /> Sorpréndeme ✨</label>
-                    <span class="error">Dinos un destino o marca «Sorpréndeme».</span>
+                    <label for="destino">Destino *</label>
+                    <input type="text" id="destino" name="destino" placeholder="Ej. Lisboa, Japón…" maxlength="100" />
+                    <label class="inline-check"><input type="checkbox" id="sorprendeme" /> Sorpréndeme ✨</label>
+                    <span class="error">Escribe un destino o marca «Sorpréndeme».</span>
+                  </div>
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="fechaIda">Fecha de ida *</label>
+                    <input type="date" id="fechaIda" name="fechaIda" />
+                    <span class="error">Elige una fecha de ida a partir de hoy.</span>
+                  </div>
+                  <div class="field" id="campoVuelta">
+                    <label for="fechaVuelta">Fecha de vuelta *</label>
+                    <input type="date" id="fechaVuelta" name="fechaVuelta" />
+                    <span class="error">Elige una fecha de vuelta igual o posterior a la de ida.</span>
+                  </div>
+                </div>
+
+                <label class="inline-check inline-check--field"><input type="checkbox" id="flexibles" name="flexibles" /> Mis fechas son flexibles (± 3 días)</label>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <span class="label" id="adultosLabel">Adultos *</span>
+                    <div class="counter" data-min="1" data-max="20">
+                      <button type="button" data-step="-1" aria-label="Quitar un adulto">−</button>
+                      <output id="adultos" aria-labelledby="adultosLabel" aria-live="polite">2</output>
+                      <button type="button" data-step="1" aria-label="Añadir un adulto">+</button>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <span class="label" id="ninosLabel">Niños <span class="opt">(menores de 12)</span></span>
+                    <div class="counter" data-min="0" data-max="10">
+                      <button type="button" data-step="-1" aria-label="Quitar un niño">−</button>
+                      <output id="ninos" aria-labelledby="ninosLabel" aria-live="polite">0</output>
+                      <button type="button" data-step="1" aria-label="Añadir un niño">+</button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ===== PASO 2: PREFERENCIAS ===== -->
+              <fieldset class="paso" data-paso="2" hidden>
+                <legend class="fieldset-title"><b>2</b> Preferencias</legend>
+
+                <div class="field" id="campoTipos">
+                  <span class="label" id="tiposLabel">Tipo de viaje * <span class="opt">(elige uno o varios)</span></span>
+                  <div class="pill-group" role="group" aria-labelledby="tiposLabel">
+                    <label class="pill"><input type="checkbox" name="tipos" value="Aventura" /><span>Aventura</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Urbano / Ciudad" /><span>Urbano / Ciudad</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Relax / Bienestar" /><span>Relax / Bienestar</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Cultural" /><span>Cultural</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Ocio / Diversión" /><span>Ocio / Diversión</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Naturaleza" /><span>Naturaleza</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Gastronómico" /><span>Gastronómico</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Parques temáticos" /><span>Parques temáticos</span></label>
+                    <label class="pill"><input type="checkbox" name="tipos" value="Otro" /><span>Otro</span></label>
+                  </div>
+                  <span class="error">Elige al menos un tipo de viaje.</span>
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="presupuesto">Presupuesto máximo por persona *</label>
+                    <select id="presupuesto" name="presupuesto">
+                      <option value="">Elige una opción</option>
+                      <option>Hasta 300 €</option>
+                      <option>300 – 600 €</option>
+                      <option>600 – 1.300 €</option>
+                      <option>1.300 – 3.000 €</option>
+                      <option>Más de 3.000 €</option>
+                    </select>
+                    <span class="error">Elige un presupuesto.</span>
+                  </div>
+                  <div class="field">
+                    <label for="alojamiento">Alojamiento *</label>
+                    <select id="alojamiento" name="alojamiento">
+                      <option value="">Elige una opción</option>
+                      <option>Hotel 3-5 estrellas</option>
+                      <option>Apartamento</option>
+                      <option>Hostal / B&amp;B</option>
+                      <option>Casa rural</option>
+                      <option value="Experiencia única (glamping, riad, casa flotante…)">Experiencia única (glamping, riad, casa flotante…)</option>
+                      <option>Me da igual</option>
+                    </select>
+                    <span class="error">Elige un tipo de alojamiento.</span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <span class="label" id="sosLabel">¿Prefieres experiencias sostenibles?</span>
+                  <div class="pill-group" role="radiogroup" aria-labelledby="sosLabel">
+                    <label class="pill"><input type="radio" name="sostenible" value="Sí" /><span>Sí</span></label>
+                    <label class="pill"><input type="radio" name="sostenible" value="No" /><span>No</span></label>
+                    <label class="pill"><input type="radio" name="sostenible" value="Me da igual" checked /><span>Me da igual</span></label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <span class="label" id="extrasLabel">Extras <span class="opt">(opcional)</span></span>
+                  <div class="pill-group" role="group" aria-labelledby="extrasLabel">
+                    <label class="pill"><input type="checkbox" name="extras" value="Seguro médico de viaje" /><span>Seguro médico de viaje</span></label>
+                    <label class="pill"><input type="checkbox" name="extras" value="Actividades adicionales" /><span>Actividades adicionales</span></label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="comentarios">Cuéntanos tu viaje ideal <span class="opt">(opcional)</span></label>
+                  <textarea id="comentarios" name="comentarios" maxlength="3000" placeholder="Ej. Celebramos nuestro aniversario: queremos playa tranquila, buena comida y una excursión especial."></textarea>
+                </div>
+              </fieldset>
+
+              <!-- ===== PASO 3: TUS DATOS ===== -->
+              <fieldset class="paso" data-paso="3" hidden>
+                <legend class="fieldset-title"><b>3</b> Tus datos</legend>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" maxlength="100" />
+                    <span class="error">Escribe tu nombre.</span>
+                  </div>
+                  <div class="field">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" autocomplete="email" maxlength="150" placeholder="tu@correo.com" />
+                    <span class="error">Escribe un email válido: ahí te enviaremos la propuesta.</span>
                   </div>
                 </div>
                 <div class="grid-2">
                   <div class="field">
-                    <label for="fecha_ida">Fecha de ida</label>
-                    <input type="date" id="fecha_ida" name="fecha_ida" required />
-                    <span class="error">Elige una fecha de ida.</span>
+                    <label for="telefono">Teléfono <span class="opt">(opcional)</span></label>
+                    <input type="tel" id="telefono" name="telefono" autocomplete="tel" maxlength="30" placeholder="+34 600 000 000" />
                   </div>
                   <div class="field">
-                    <label for="fecha_vuelta">Fecha de vuelta</label>
-                    <input type="date" id="fecha_vuelta" name="fecha_vuelta" required />
-                    <span class="error">La vuelta debe ser posterior a la ida.</span>
-                  </div>
-                </div>
-                <div class="grid-2">
-                  <div class="field">
-                    <label for="viajeros">Nº de viajeros</label>
-                    <input type="number" id="viajeros" name="viajeros" min="1" max="20" value="2" required />
-                    <span class="error">Indica entre 1 y 20 viajeros.</span>
-                  </div>
-                  <div class="field">
-                    <label for="flexibilidad">Flexibilidad de fechas <span class="opt">(opcional)</span></label>
-                    <select id="flexibilidad" name="flexibilidad">
-                      <option value="exactas">Fechas exactas</option>
-                      <option value="1-2">± 1-2 días</option>
-                      <option value="semana">± 1 semana</option>
+                    <label for="origenCliente">¿Cómo nos conociste? <span class="opt">(opcional)</span></label>
+                    <select id="origenCliente" name="origenCliente">
+                      <option value="">Elige una opción</option>
+                      <option>Redes sociales</option>
+                      <option>Google</option>
+                      <option>Amigos o familia</option>
+                      <option>Escuela</option>
+                      <option>Otro</option>
                     </select>
                   </div>
                 </div>
 
-                <div class="field" id="styleField">
-                  <span class="label" id="styleLabel">Estilo de viaje <span class="opt" style="font-weight:400;color:#9A9A9A">(elige uno o varios)</span></span>
-                  <div class="pill-group" role="group" aria-labelledby="styleLabel">
-                    <label class="pill"><input type="checkbox" name="estilo" value="relax" /><span>🌴 Relax</span></label>
-                    <label class="pill"><input type="checkbox" name="estilo" value="aventura" /><span>🧗 Aventura</span></label>
-                    <label class="pill"><input type="checkbox" name="estilo" value="cultura" /><span>🏛️ Cultura</span></label>
-                    <label class="pill"><input type="checkbox" name="estilo" value="gastronomia" /><span>🍷 Gastronomía</span></label>
-                    <label class="pill"><input type="checkbox" name="estilo" value="romantico" /><span>💛 Romántico</span></label>
-                  </div>
-                  <span class="error">Elige al menos un estilo.</span>
+                <!-- Campo anti-spam: invisible para personas, debe llegar vacío -->
+                <input type="text" name="web" id="web" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+
+                <div class="field" id="campoConsent">
+                  <label class="consent">
+                    <input type="checkbox" id="consentimiento" name="consentimiento" />
+                    <span>He leído y acepto la <a href="#" data-legal="privacidad">política de privacidad</a>. *</span>
+                  </label>
+                  <span class="error">Necesitamos tu consentimiento para preparar tu propuesta.</span>
                 </div>
 
-                <div class="field">
-                  <span class="label" id="extrasLabel">Extras opcionales</span>
-                  <div class="pill-group" role="group" aria-labelledby="extrasLabel">
-                    <label class="pill"><input type="checkbox" name="extras" value="seguro_medico" /><span>Seguro médico</span></label>
-                    <label class="pill"><input type="checkbox" name="extras" value="actividades" /><span>Actividades adicionales</span></label>
-                  </div>
-                </div>
+                <dl class="rgpd" aria-label="Información básica sobre protección de datos">
+                  <div><dt>Responsable</dt><dd>[NOMBRE O RAZÓN SOCIAL] · [NIF] · [EMAIL DE CONTACTO]</dd></div>
+                  <div><dt>Finalidad</dt><dd>Preparar y enviarte tu propuesta de viaje y atender tu solicitud.</dd></div>
+                  <div><dt>Legitimación</dt><dd>Tu consentimiento.</dd></div>
+                  <div><dt>Destinatarios</dt><dd>No cedemos tus datos a terceros salvo obligación legal. Usamos proveedores tecnológicos (Google y Notion) como encargados del tratamiento.</dd></div>
+                  <div><dt>Derechos</dt><dd>Acceso, rectificación, supresión y demás derechos, como se explica en la política de privacidad.</dd></div>
+                </dl>
+              </fieldset>
 
-                <div class="field">
-                  <label for="mensaje">Cuéntanos tu viaje ideal <span class="opt">(opcional, pero nos encanta)</span></label>
-                  <textarea id="mensaje" name="mensaje" maxlength="1500" placeholder="Ej. Queremos playa tranquila, buena comida y una excursión especial para celebrar nuestro aniversario. Nada de madrugar demasiado 😄"></textarea>
-                </div>
-
-                <!-- Campos ocultos para pagos / automatización -->
-                <input type="hidden" name="package_id" id="package_id" />
-                <input type="hidden" name="package_name" id="package_name" />
-                <input type="hidden" name="package_price" id="package_price" />
-                <input type="hidden" name="total_estimate" id="total_estimate" />
-                <input type="hidden" name="currency" value="EUR" />
-                <input type="hidden" name="source" value="landing-exploryaa" />
-                <!-- Honeypot antispam -->
-                <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
-
-                <div class="summary" aria-live="polite">
-                  <div>
-                    <small>Total estimado</small>
-                    <div class="summary__detail" id="summaryDetail">Elige un paquete para ver el total</div>
-                  </div>
-                  <strong id="summaryTotal">— €</strong>
-                </div>
-
-                <label class="consent" id="consentField">
-                  <input type="checkbox" id="consent" name="consent" required />
-                  <span>He leído y acepto el <a href="#" data-legal="privacidad">aviso de privacidad</a> y las <a href="#" data-legal="condiciones">condiciones de contratación</a>, y entiendo que mi solicitud será procesada con ayuda de inteligencia artificial.</span>
-                </label>
-
-                <button type="submit" class="btn btn--gold btn--block" id="submitBtn">
+              <div class="form-nav">
+                <button type="button" class="btn btn--back" id="btnAtras" hidden>Atrás</button>
+                <button type="submit" class="btn btn--gold" id="btnSiguiente">
                   <span class="spinner"></span>
-                  <span>Diseña mi viaje y continuar al pago</span>
+                  <span id="btnTexto">Siguiente</span>
                   <svg class="btn-label-arrow"><use href="#i-arrow"/></svg>
                 </button>
-                <p class="form-foot"><svg><use href="#i-lock"/></svg> Pago seguro · Tus datos nunca se comparten</p>
               </div>
+              <p class="form-foot"><svg><use href="#i-lock"/></svg> Gratis y sin compromiso. Solo pagas si aceptas la propuesta.</p>
+            </div>
 
-              <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-                <div class="check"><svg><use href="#i-check"/></svg></div>
-                <h3>¡Tu viaje ya está en marcha!</h3>
-                <p id="successText">Hemos recibido tu idea. Te redirigiremos al pago seguro y, en cuanto se confirme, recibirás tus reservas y tu itinerario en tu correo.</p>
-                <p style="font-size:.85rem;color:#9A9A9A">Revisa también la carpeta de spam, por si acaso.</p>
-              </div>
-            </form>
-          </div>
+            <div class="form-success" id="formSuccess" role="status" tabindex="-1">
+              <div class="check"><svg><use href="#i-check"/></svg></div>
+              <h3>¡Solicitud recibida!</h3>
+              <p id="successText"></p>
+              <p class="success-id" id="successId"></p>
+              <p style="font-size:.85rem;color:#6b6b6b">Si no ves nuestro correo, revisa la carpeta de spam.</p>
+            </div>
+          </form>
+
+          <aside class="trip-summary" aria-labelledby="resumenTitulo">
+            <h3 id="resumenTitulo">Tu viaje</h3>
+            <dl id="resumen" aria-live="polite"></dl>
+            <p class="trip-summary__price" id="resumenPrecio"></p>
+            <p class="trip-summary__note">Precio orientativo por persona. Recibirás el precio final en tu propuesta y solo pagas si la aceptas.</p>
+          </aside>
         </div>
       </div>
     </section>
@@ -1023,7 +1142,7 @@
             <span class="sample-tag">Ejemplo</span>
             <div class="testi__quote">“</div>
             <div class="testi__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Llevaba dos años diciendo «este año sí viajo». Rellené el formulario en el sofá y a los pocos minutos tenía vuelos, hotel y un plan para Roma. Ojalá lo hubiera descubierto antes.</p>
+            <p>Llevaba dos años diciendo «este año sí viajo». Rellené el formulario en el sofá y al día siguiente tenía en el correo vuelos, hotel y un plan para Roma. Ojalá lo hubiera descubierto antes.</p>
             <div class="testi__author"><div class="testi__avatar">LM</div><div><strong>Laura M.</strong><span>Mini Escapada · Roma</span></div></div>
           </article>
           <article class="testi reveal d2">
@@ -1064,8 +1183,8 @@
 
           <div class="faq-list reveal d1">
             <div class="faq-item">
-              <button class="faq-q" aria-expanded="false">¿De verdad recibo todo en minutos?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Sí. Una vez confirmado el pago, nuestra IA busca y reserva las mejores opciones según tus preferencias y te envía las confirmaciones y el itinerario por email. En casos muy concretos (fechas de altísima demanda o viajes a medida Premium) puede tardar algo más, y siempre te avisamos.</p></div>
+              <button class="faq-q" aria-expanded="false">¿Cuándo recibo mi propuesta? ¿Tengo que pagar antes?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>En menos de 48 horas desde que envías el formulario, y pedirla es gratis. Solo pagas si la propuesta te convence y la aceptas; entonces hacemos las reservas y te enviamos el dossier de tu viaje.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-q" aria-expanded="false">¿Qué incluye exactamente el precio?<span class="plus" aria-hidden="true"></span></button>
@@ -1102,7 +1221,7 @@
       <div class="container">
         <span class="eyebrow reveal">Tu próximo destino te espera</span>
         <h2 class="reveal d1">Deja de soñarlo.<br/><em>Empieza a vivirlo.</em></h2>
-        <p class="reveal d2">Dos minutos para contarnos tu idea. Unos minutos más y lo tendrás todo en tu correo.</p>
+        <p class="reveal d2">Dos minutos para contarnos tu idea. En menos de 48 horas, tu propuesta en el correo. Sin compromiso.</p>
         <a href="#disena" class="btn btn--gold reveal d3">Diseña mi viaje <svg><use href="#i-arrow"/></svg></a>
       </div>
     </section>
@@ -1202,17 +1321,13 @@
     </form>
   </div>
 
+  <script src="conexion-formulario.js"></script>
   <script>
     /* =========================================================
-       CONFIGURACIÓN DE INTEGRACIONES
-       Rellena estos valores cuando conectes pagos y automatización.
+       CONFIGURACIÓN
+       El envío del formulario está en conexion-formulario.js.
        ========================================================= */
     const EXPLORYAA_CONFIG = {
-      // URL que recibe el formulario (tu backend, Make, Zapier, n8n...).
-      // Recibe un JSON con todos los campos. Si devuelve { checkoutUrl }, se redirige al pago.
-      formEndpoint: "",
-      // Alternativa: URL fija de pago por paquete (p. ej. Stripe Payment Links).
-      paymentLinks: { mini: "", express: "", completo: "", premium: "" },
       // URL del chatbot real (opcional). Recibe { message } y devuelve { reply }.
       assistantEndpoint: ""
     };
@@ -1284,150 +1399,209 @@
       }));
 
       /* =========================================================
-         FORMULARIO DE VIAJE
+         FORMULARIO DE VIAJE (3 pasos)
+         Al final llama a enviarSolicitud(f) de conexion-formulario.js,
+         que lo envía a Google Apps Script (hoja + correos + Notion).
          ========================================================= */
       const form = $("#tripForm");
-      const fields = $("#formFields");
+      const pasos = $$(".paso", form);
+      const stepperItems = $$("#stepper li");
+      const errorBox = $("#formError");
+      const btnAtras = $("#btnAtras"), btnSiguiente = $("#btnSiguiente"), btnTexto = $("#btnTexto");
       const destino = $("#destino"), sorprendeme = $("#sorprendeme");
-      const ida = $("#fecha_ida"), vuelta = $("#fecha_vuelta"), viajeros = $("#viajeros");
-      const pkgRadios = $$('input[name="paquete"]');
-      const progress = $$(".form-progress i");
+      const ida = $("#fechaIda"), vuelta = $("#fechaVuelta"), campoVuelta = $("#campoVuelta");
+      const PAQUETES_TARJETA = { mini: "p-mini", express: "p-express", completo: "p-completo", premium: "p-premium" };
+      let paso = 1;
 
-      // Fechas mínimas
-      const today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-      ida.min = today.toISOString().split("T")[0];
-      ida.addEventListener("change", () => { vuelta.min = ida.value; if (vuelta.value && vuelta.value <= ida.value) vuelta.value = ""; });
+      // Fecha mínima: hoy
+      const hoyISO = (() => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); })();
+      ida.min = hoyISO; vuelta.min = hoyISO;
+      ida.addEventListener("change", () => { vuelta.min = ida.value || hoyISO; });
+
+      // Lee el formulario con los nombres de campo que espera Code.gs
+      const marcado = name => { const r = $(`input[name="${name}"]:checked`, form); return r ? r.value : ""; };
+      const marcados = name => $$(`input[name="${name}"]:checked`, form).map(i => i.value);
+      function datos() {
+        return {
+          paquete: marcado("paquete"),
+          vuelo: marcado("vuelo") || "Ida y vuelta",
+          origen: $("#origen").value,
+          destino: sorprendeme.checked ? "Sorpréndeme" : destino.value,
+          fechaIda: ida.value,
+          fechaVuelta: vuelta.value,
+          flexibles: $("#flexibles").checked,
+          adultos: parseInt($("#adultos").value, 10),
+          ninos: parseInt($("#ninos").value, 10),
+          tipos: marcados("tipos"),
+          presupuesto: $("#presupuesto").value,
+          alojamiento: $("#alojamiento").value,
+          sostenible: marcado("sostenible"),
+          extras: marcados("extras"),
+          comentarios: $("#comentarios").value,
+          nombre: $("#nombre").value,
+          email: $("#email").value,
+          telefono: $("#telefono").value,
+          origenCliente: $("#origenCliente").value,
+          consentimiento: $("#consentimiento").checked,
+        };
+      }
+
+      // Contadores de adultos y niños
+      $$(".counter", form).forEach(c => {
+        const out = $("output", c), min = +c.dataset.min, max = +c.dataset.max;
+        const pintar = () => {
+          const v = +out.value;
+          $('[data-step="-1"]', c).disabled = v <= min;
+          $('[data-step="1"]', c).disabled = v >= max;
+        };
+        $$("button", c).forEach(b => b.addEventListener("click", () => {
+          out.value = Math.min(max, Math.max(min, +out.value + +b.dataset.step));
+          pintar(); actualizarResumen();
+        }));
+        pintar();
+      });
 
       // Sorpréndeme
       sorprendeme.addEventListener("change", () => {
         destino.disabled = sorprendeme.checked;
-        destino.value = sorprendeme.checked ? "" : destino.value;
+        if (sorprendeme.checked) destino.value = "";
         destino.placeholder = sorprendeme.checked ? "¡Te sorprenderemos! ✨" : "Ej. Lisboa, Japón…";
         destino.closest(".field").classList.remove("invalid");
       });
 
-      // Preseleccionar paquete desde las tarjetas
-      $$("[data-package]").forEach(btn => btn.addEventListener("click", () => {
-        const r = $("#p-" + btn.dataset.package);
-        if (r) { r.checked = true; updateSummary(); }
+      // Solo ida: oculta la fecha de vuelta
+      $$('input[name="vuelo"]', form).forEach(r => r.addEventListener("change", () => {
+        const soloIda = marcado("vuelo") === "Solo ida";
+        campoVuelta.hidden = soloIda;
+        if (soloIda) campoVuelta.classList.remove("invalid");
       }));
 
-      // Resumen de precio
-      function updateSummary() {
-        const sel = pkgRadios.find(r => r.checked);
-        const n = Math.max(1, parseInt(viajeros.value, 10) || 1);
-        if (!sel) return;
-        const price = +sel.dataset.price, total = price * n;
-        $("#summaryDetail").textContent = `${sel.dataset.name} · ${euro(price)} × ${n} viajero${n > 1 ? "s" : ""}` + (getExtras().length ? " + extras (se cotizan aparte)" : "");
-        $("#summaryTotal").textContent = euro(total);
-        $("#package_id").value = sel.value;
-        $("#package_name").value = sel.dataset.name;
-        $("#package_price").value = price;
-        $("#total_estimate").value = total;
-        $("#packageField").classList.remove("invalid");
+      // Botones "Elegir …" de las tarjetas de paquetes
+      $$("[data-package]").forEach(btn => btn.addEventListener("click", () => {
+        const r = document.getElementById(PAQUETES_TARJETA[btn.dataset.package]);
+        if (r) { r.checked = true; $("#campoPaquete").classList.remove("invalid"); actualizarResumen(); }
+      }));
+
+      // Resumen en vivo
+      const fechaCorta = iso => iso ? new Date(iso + "T12:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" }) : "";
+      const escHTML = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      function actualizarResumen() {
+        const f = datos();
+        const filas = [];
+        if (f.paquete) filas.push(["Paquete", f.paquete]);
+        if (f.origen.trim() || f.destino.trim()) filas.push(["Ruta", `${f.origen.trim() || "…"} → ${f.destino.trim() || "…"}`]);
+        if (f.fechaIda) {
+          let t = fechaCorta(f.fechaIda) + (f.vuelo === "Ida y vuelta" ? (f.fechaVuelta ? " → " + fechaCorta(f.fechaVuelta) : "") : " (solo ida)");
+          if (f.flexibles) t += " · ± 3 días";
+          filas.push(["Fechas", t]);
+        }
+        filas.push(["Viajeros", `${f.adultos} ${f.adultos === 1 ? "adulto" : "adultos"}` + (f.ninos ? ` · ${f.ninos} ${f.ninos === 1 ? "niño" : "niños"}` : "")]);
+        if (f.tipos.length) filas.push(["Estilo", f.tipos.join(", ")]);
+        if (f.presupuesto) filas.push(["Presupuesto", f.presupuesto + " por persona"]);
+        if (f.alojamiento) filas.push(["Alojamiento", f.alojamiento]);
+        if (f.extras.length) filas.push(["Extras", f.extras.join(", ")]);
+        $("#resumen").innerHTML = filas.map(([k, v]) => `<div><dt>${k}</dt><dd>${escHTML(v)}</dd></div>`).join("");
+        const sel = $('input[name="paquete"]:checked', form);
+        $("#resumenPrecio").innerHTML = sel && sel.dataset.price
+          ? `<span>Desde</span> <strong>${String(+sel.dataset.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} €</strong> <span>/ persona</span>` : "";
       }
-      const getExtras = () => $$('input[name="extras"]:checked').map(i => i.value);
-      const getStyles = () => $$('input[name="estilo"]:checked').map(i => i.value);
+      form.addEventListener("input", actualizarResumen);
+      form.addEventListener("change", actualizarResumen);
+      actualizarResumen();
 
-      form.addEventListener("change", () => { updateSummary(); updateProgress(); });
-      form.addEventListener("input", updateProgress);
-
-      function updateProgress() {
-        const s1 = ["#nombre", "#email"].filter(s => $(s).value.trim()).length / 2;
-        const s2 = pkgRadios.some(r => r.checked) ? 1 : 0;
-        const s3 = [(destino.value.trim() || sorprendeme.checked), ida.value, vuelta.value, getStyles().length].filter(Boolean).length / 4;
-        [s1, s2, s3].forEach((v, i) => progress[i].style.width = (v * 100) + "%");
-      }
-
-      // Validación
-      function setInvalid(el, bad) { const f = el.closest(".field"); if (f) f.classList.toggle("invalid", bad); return !bad; }
-      function validate() {
+      // Validación por pasos
+      function marcar(el, mal) { el.classList.toggle("invalid", mal); return !mal; }
+      function validarPaso(n) {
+        const f = datos();
+        const campo = sel => $(sel, form).closest(".field");
         let ok = true;
-        ok = setInvalid($("#nombre"), !$("#nombre").value.trim()) && ok;
-        ok = setInvalid($("#email"), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("#email").value.trim())) && ok;
-        const pkgOk = pkgRadios.some(r => r.checked);
-        $("#packageField").classList.toggle("invalid", !pkgOk); ok = pkgOk && ok;
-        ok = setInvalid($("#origen"), !$("#origen").value.trim()) && ok;
-        ok = setInvalid(destino, !sorprendeme.checked && !destino.value.trim()) && ok;
-        ok = setInvalid(ida, !ida.value) && ok;
-        ok = setInvalid(vuelta, !vuelta.value || (ida.value && vuelta.value <= ida.value)) && ok;
-        const n = parseInt(viajeros.value, 10);
-        ok = setInvalid(viajeros, !(n >= 1 && n <= 20)) && ok;
-        const stOk = getStyles().length > 0;
-        $("#styleField").classList.toggle("invalid", !stOk); ok = stOk && ok;
-        const cOk = $("#consent").checked;
-        $("#consentField").style.color = cOk ? "" : "#c0392b"; ok = cOk && ok;
+        if (n === 1) {
+          ok = marcar($("#campoPaquete"), !f.paquete) && ok;
+          ok = marcar(campo("#origen"), !f.origen.trim()) && ok;
+          ok = marcar(campo("#destino"), !f.destino.trim()) && ok;
+          ok = marcar(campo("#fechaIda"), !f.fechaIda || f.fechaIda < hoyISO) && ok;
+          if (f.vuelo === "Ida y vuelta") ok = marcar(campoVuelta, !f.fechaVuelta || f.fechaVuelta < f.fechaIda) && ok;
+        }
+        if (n === 2) {
+          ok = marcar($("#campoTipos"), !f.tipos.length) && ok;
+          ok = marcar(campo("#presupuesto"), !f.presupuesto) && ok;
+          ok = marcar(campo("#alojamiento"), !f.alojamiento) && ok;
+        }
+        if (n === 3) {
+          ok = marcar(campo("#nombre"), !f.nombre.trim()) && ok;
+          ok = marcar(campo("#email"), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) && ok;
+          ok = marcar($("#campoConsent"), !f.consentimiento) && ok;
+        }
+        if (!ok) {
+          mostrarError("Revisa los campos marcados en rojo para continuar.");
+          const primero = $(`.paso[data-paso="${n}"] .field.invalid`, form);
+          const foco = primero && $("input:not([type=hidden]):not(:disabled), select, textarea", primero);
+          if (foco) foco.focus();
+        } else ocultarError();
         return ok;
       }
-      $$("input, select, textarea", form).forEach(el => el.addEventListener("input", () => { const f = el.closest(".field"); if (f) f.classList.remove("invalid"); }));
-      $("#consent").addEventListener("change", () => $("#consentField").style.color = "");
+      $$("input, select, textarea", form).forEach(el => el.addEventListener("input", () => {
+        const f = el.closest(".field"); if (f) f.classList.remove("invalid");
+      }));
+      $$('input[type="checkbox"], input[type="radio"]', form).forEach(el => el.addEventListener("change", () => {
+        const f = el.closest(".field"); if (f) f.classList.remove("invalid");
+      }));
 
-      // Construye el payload listo para pagos / email
-      function buildPayload() {
-        const fd = new FormData(form);
-        return {
-          nombre: fd.get("nombre").trim(),
-          email: fd.get("email").trim(),
-          paquete: { id: fd.get("package_id"), nombre: fd.get("package_name"), precio_por_persona: +fd.get("package_price") },
-          origen: fd.get("origen").trim(),
-          destino: sorprendeme.checked ? "SORPRÉNDEME" : (fd.get("destino") || "").trim(),
-          sorprendeme: sorprendeme.checked,
-          fecha_ida: fd.get("fecha_ida"),
-          fecha_vuelta: fd.get("fecha_vuelta"),
-          flexibilidad: fd.get("flexibilidad"),
-          viajeros: parseInt(fd.get("viajeros"), 10),
-          estilo: getStyles(),
-          extras: getExtras(),
-          mensaje: (fd.get("mensaje") || "").trim(),
-          total_estimado: +fd.get("total_estimate"),
-          moneda: "EUR",
-          consentimiento_privacidad_ia: true,
-          origen_lead: "landing-exploryaa",
-          enviado_en: new Date().toISOString()
-        };
+      function mostrarError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
+      function ocultarError() { errorBox.hidden = true; errorBox.textContent = ""; }
+
+      function irAPaso(n) {
+        paso = n;
+        pasos.forEach(p => { p.hidden = +p.dataset.paso !== n; });
+        stepperItems.forEach((li, i) => {
+          li.classList.toggle("active", i + 1 === n);
+          li.classList.toggle("done", i + 1 < n);
+          if (i + 1 === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+        });
+        btnAtras.hidden = n === 1;
+        btnTexto.textContent = n === 3 ? "Enviar mi solicitud" : "Siguiente";
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+        const legend = $(`.paso[data-paso="${n}"] legend`, form);
+        if (legend) { legend.tabIndex = -1; legend.focus({ preventScroll: true }); }
+        document.dispatchEvent(new CustomEvent("exploryaa:paso", { detail: { paso: n } }));
       }
+      btnAtras.addEventListener("click", () => { ocultarError(); irAPaso(paso - 1); });
+
+      let empezado = false;
+      form.addEventListener("focusin", () => {
+        if (!empezado) { empezado = true; document.dispatchEvent(new CustomEvent("exploryaa:inicio_formulario")); }
+      });
 
       form.addEventListener("submit", async e => {
         e.preventDefault();
-        if (form.website.value) return; // honeypot
-        updateSummary();
-        if (!validate()) {
-          const first = $(".field.invalid", form);
-          if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (!validarPaso(paso)) return;
+        if (paso < 3) { irAPaso(paso + 1); return; }
+
+        if (typeof enviarSolicitud !== "function") {
+          mostrarError("No se ha podido cargar el envío del formulario. Recarga la página o escríbenos a hola@exploryaa.com.");
           return;
         }
-        const btn = $("#submitBtn");
-        btn.classList.add("loading"); btn.disabled = true;
-        const payload = buildPayload();
-
-        // Evento para analítica / integraciones externas
-        document.dispatchEvent(new CustomEvent("exploryaa:lead", { detail: payload }));
-
-        let checkoutUrl = EXPLORYAA_CONFIG.paymentLinks[payload.paquete.id] || "";
+        const f = datos();
+        btnSiguiente.disabled = true; btnAtras.disabled = true;
+        btnSiguiente.classList.add("loading"); btnTexto.textContent = "Enviando…";
         try {
-          const endpoint = form.dataset.endpoint || EXPLORYAA_CONFIG.formEndpoint;
-          if (endpoint) {
-            const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-            if (!res.ok) throw new Error("HTTP " + res.status);
-            const data = await res.json().catch(() => ({}));
-            if (data.checkoutUrl) checkoutUrl = data.checkoutUrl;
-          } else {
-            // Modo demo: sin endpoint configurado
-            console.info("[Exploryaa] Modo demo. Payload listo para enviar:", payload);
-            await new Promise(r => setTimeout(r, 1200));
-          }
-          fields.style.display = "none";
-          $(".form-progress").style.display = "none";
-          $("#successText").textContent = `¡Gracias, ${payload.nombre.split(" ")[0]}! Hemos recibido tu idea para ${payload.sorprendeme ? "un destino sorpresa" : payload.destino}. ` +
-            (checkoutUrl ? "Te llevamos al pago seguro…" : `En cuanto se confirme el pago, recibirás tus reservas y tu itinerario en ${payload.email}.`);
-          $("#formSuccess").classList.add("show");
-          $("#formSuccess").scrollIntoView({ behavior: "smooth", block: "center" });
-          if (checkoutUrl) setTimeout(() => { window.location.href = checkoutUrl; }, 1800);
+          const r = await enviarSolicitud(f, $("#web").value);
+          $("#formFields").hidden = true;
+          $("#stepper").hidden = true;
+          $("#successText").textContent = `Gracias, ${f.nombre.trim().split(/\s+/)[0]}. Te hemos enviado un correo de confirmación a ${f.email.trim()}. En menos de 48 horas recibirás tu propuesta personalizada, y solo pagas si te convence.`;
+          $("#successId").textContent = r && r.id ? `Número de solicitud: ${r.id}` : "";
+          const ok = $("#formSuccess"); ok.classList.add("show"); ok.focus();
+          ok.scrollIntoView({ behavior: "smooth", block: "center" });
+          document.dispatchEvent(new CustomEvent("exploryaa:solicitud_enviada", { detail: { id: r && r.id, paquete: f.paquete } }));
         } catch (err) {
           console.error(err);
-          alert("Vaya, algo ha fallado al enviar tu solicitud. Inténtalo de nuevo en unos segundos o escríbenos a hola@exploryaa.com.");
+          const red = err instanceof TypeError || err instanceof SyntaxError;
+          mostrarError(red
+            ? "No hemos podido conectar con nuestro servidor. Revisa tu conexión e inténtalo de nuevo. Si sigue fallando, escríbenos a hola@exploryaa.com."
+            : err.message);
         } finally {
-          btn.classList.remove("loading"); btn.disabled = false;
+          btnSiguiente.disabled = false; btnAtras.disabled = false;
+          btnSiguiente.classList.remove("loading"); btnTexto.textContent = "Enviar mi solicitud";
         }
       });
 
@@ -1446,9 +1620,9 @@
 
       const answers = {
         paquete: "Depende de tu tiempo: para un finde, la <b>Mini Escapada</b> (199 €). Para un puente, el <b>Itinerario Express</b> (449 €). Para vacaciones o luna de miel, el <b>Viaje Completo</b> (1.290 €), el favorito. Y si quieres algo único y con asistencia 24/7, <b>Premium</b> (2.990 €).",
-        tiempo: "Una vez confirmado el pago, recibirás tus reservas y tu itinerario en tu correo <b>en minutos</b>. Los viajes Premium a medida pueden llevar un poco más. ⏱️",
+        tiempo: "Recibirás tu propuesta personalizada en tu correo <b>en menos de 48 horas</b> desde que envías el formulario. ⏱️",
         sorpresa: "¡Me encanta! Marca la casilla <b>«Sorpréndeme»</b> en el formulario y cuéntanos qué te apetece. Nosotros elegimos el destino perfecto. ✨",
-        precio: "Todos nuestros paquetes tienen un <b>precio único por persona</b>, sin comisiones ocultas. Puedes ver el total estimado en el formulario antes de pagar.",
+        precio: "Todos nuestros paquetes tienen un <b>precio único por persona</b>, sin comisiones ocultas. Pedir tu propuesta es gratis: <b>solo pagas si la aceptas</b>.",
         seguro: "El seguro está incluido desde el <b>Viaje Completo</b>. En el resto puedes añadir el <b>seguro médico</b> como extra opcional.",
         default: "¡Buena pregunta! Para darte la mejor respuesta, rellena el formulario «Diseña mi viaje» y nuestro equipo te ayudará. También puedes escribirnos a <b>hola@exploryaa.com</b>."
       };
