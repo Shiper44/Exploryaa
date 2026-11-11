@@ -17,6 +17,7 @@ const EMAIL_AVISOS = '';      // A quién avisar de cada solicitud nueva. Vacío
 const HORAS_RESPUESTA = '48 horas';
 const WHATSAPP = '';          // Ej.: '+34 600 000 000'. Vacío = no se muestra.
 const NOMBRE_HOJA = 'Solicitudes';
+const COPIA_OCULTA = true;    // true = recibes en copia oculta cada confirmación que se envía al cliente.
 
 const COLUMNAS = [
   'Fecha recepción', 'ID', 'Estado', 'Nombre', 'Email', 'Teléfono', 'Paquete',
@@ -45,8 +46,8 @@ function doPost(e) {
     let notion = '';
     try { notion = guardarEnNotion(d, id); }
     catch (errNotion) { console.error(errNotion); notion = '⚠️ No se pudo añadir a Notion: ' + errNotion.message; }
-    enviarConfirmacionCliente(d, id);
-    enviarAvisoInterno(d, id, notion);
+    const confirmacion = enviarConfirmacionCliente(d, id);
+    enviarAvisoInterno(d, id, notion, confirmacion);
 
     return respuesta({ ok: true, id });
   } catch (err) {
@@ -147,12 +148,17 @@ function enviarConfirmacionCliente(d, id) {
 
   const opciones = { name: NOMBRE_REMITENTE, htmlBody: html };
   if (EMAIL_RESPUESTA) opciones.replyTo = EMAIL_RESPUESTA;
+  if (COPIA_OCULTA) opciones.bcc = EMAIL_AVISOS || Session.getEffectiveUser().getEmail();
 
-  MailApp.sendEmail(String(d.email).trim(), `Hemos recibido tu solicitud de viaje ✈ ${MARCA}`, texto, opciones);
+  const para = String(d.email).trim();
+  MailApp.sendEmail(para, `Hemos recibido tu solicitud de viaje ✈ ${MARCA}`, texto, opciones);
+  console.log(`Confirmación ${id} enviada a ${para}`);
+  return `Enviada a ${para}` + (COPIA_OCULTA ? ' (te llega una copia oculta)' : '') +
+    ` · Correos disponibles hoy: ${MailApp.getRemainingDailyQuota()}. Si no le llega, que revise spam o Promociones; si el email estaba mal, te llegará un aviso de rebote.`;
 }
 
 // ===== AVISO PARA TI =====
-function enviarAvisoInterno(d, id, notion) {
+function enviarAvisoInterno(d, id, notion, confirmacion) {
   const para = EMAIL_AVISOS || Session.getEffectiveUser().getEmail();
   const filas = [['Nombre', d.nombre], ['Email', d.email], ['Teléfono', d.telefono || '—']]
     .concat(resumen(d))
@@ -167,6 +173,7 @@ function enviarAvisoInterno(d, id, notion) {
     htmlBody: `<div style="font-family:Arial,sans-serif;font-size:14px">
       <h2 style="margin:0 0 12px">Nueva solicitud de viaje · ${esc(id)}</h2>
       <table>${filas}</table>
+      ${confirmacion ? `<p><strong>Correo de confirmación al cliente:</strong> ${esc(confirmacion)}</p>` : ''}
       ${notion ? `<p>${notion.startsWith('http') ? `<a href="${notion}">Ver ficha en Notion</a>` : esc(notion)}</p>` : ''}
       <p><a href="${url}">Abrir la hoja de solicitudes</a> · Responde a este correo para escribir directamente al cliente.</p></div>`,
   });
