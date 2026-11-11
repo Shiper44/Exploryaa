@@ -5,11 +5,18 @@ Preguntas sobre el encargo de `prompt-web-operativa.md`. Junto a cada una está 
 ## Bloqueante para la fase 4
 - **Carpeta `exploryaa-agente`** (`agente.py` y `herramientas/`): no está en el repositorio. Hay que subirla e indicar qué función se llama, qué recibe y qué devuelve, y qué claves de API usa.
 
-## Modelo de negocio
-1. **¿Qué cobra Exploryaa?** ¿Solo la planificación (el cliente reserva con los enlaces de la propuesta) o también vuelos y hotel? Afecta a los textos, a las condiciones de contratación y al registro de agencia. *Por defecto: solo la planificación.*
-2. **Precios:** ¿199 / 449 / 1.290 / 2.990 € por persona? *Por defecto: sí.*
-3. **Cálculo del total:** ¿precio × adultos? ¿Cuánto pagan los niños? *Por defecto: adultos precio completo, niños la mitad.*
-4. **Extras** (seguro médico, actividades): ¿precio fijo cobrado en el pago o solo se anotan? *Por defecto: solo se anotan.*
+## Modelo de negocio (respondido)
+- **Dos tipos de producto:**
+  1. **Pack de Planificación:** solo planificación y asesoramiento. El cliente recibe la propuesta y reserva por su cuenta; Exploryaa no compra vuelos ni alojamiento.
+  2. **Packs Exploryaa** (Mini Escapada 2D1N, Itinerario Express, Viaje Completo, Exploryaa Premium): incluyen vuelos, alojamiento y actividades, cada uno con sus ventajas.
+- **Precios:** se decidirán más adelante. Mientras tanto, la web muestra `[PRECIO] €` y los precios se configuran en un solo sitio.
+
+### Pendiente
+- Qué incluye exactamente el Pack de Planificación (duración del viaje, revisiones, soporte, formato de entrega) y si se cobra por persona o por viaje.
+- Cómo se cobran los Packs Exploryaa, dado que el coste de vuelos y hotel varía según destino y fechas: ¿precio cerrado, o tarifa más un presupuesto aparte?
+- Quién hace las reservas de los Packs Exploryaa: a mano o el agente mediante APIs de proveedores.
+- Extras (seguro médico, actividades): ¿precio fijo o solo se anotan?
+- **Aviso legal:** vender vuelos + alojamiento juntos es un «viaje combinado» (Real Decreto Legislativo 1/2007, libro IV). Exige estar inscrito como agencia de viajes en tu comunidad autónoma, tener garantía de insolvencia y entregar la información precontractual obligatoria. Conviene confirmarlo con un asesor antes de vender.
 
 ## Datos que no se pueden inventar
 5. Dominio. *Marcador: `exploryaa.com`.*
