@@ -858,7 +858,7 @@
     <!-- =====================================================
          5. FORMULARIO (3 pasos + resumen en vivo)
          Envía los datos a Google Apps Script mediante
-         enviarSolicitud() de conexion-formulario.js
+         enviarSolicitud() (más abajo, en el primer <script>)
          ===================================================== -->
     <section class="section section--light" id="disena">
       <div class="container">
@@ -1321,11 +1321,46 @@
     </form>
   </div>
 
-  <script src="conexion-formulario.js"></script>
+  <script>
+    /**
+     * EXPLORYAA — Conexión del formulario de la web con el envío de correos
+     * ------------------------------------------------------------------
+     * 1. Pega aquí la URL de tu Apps Script (termina en /exec).
+     * 2. En el formulario, en el último paso ("Diseñar mi viaje"), llama a
+     *    enviarSolicitud(f) en lugar de marcar directamente como enviado.
+     *
+     * Va incluido aquí para que la página funcione como un único archivo.
+     * Configuración de Apps Script: integraciones/google-apps-script/README.md
+     */
+    const EXPLORYAA_ENDPOINT = 'https://script.google.com/macros/s/AKfycby2FxoEHU1cB3uJJUetMH6QeUrc8mPSMBT0qlVO7p_EiF_mGWZfQYlAuLcjwbUXP2MM/exec';
+
+    async function enviarSolicitud(f, honeypot = '') {
+      const datos = {
+        paquete: f.paquete, vuelo: f.vuelo,
+        origen: f.origen.trim(), destino: f.destino.trim(),
+        fechaIda: f.fechaIda, fechaVuelta: f.vuelo === 'Ida y vuelta' ? f.fechaVuelta : '',
+        flexibles: f.flexibles, adultos: f.adultos, ninos: f.ninos,
+        tipos: f.tipos, presupuesto: f.presupuesto, alojamiento: f.alojamiento,
+        sostenible: f.sostenible, extras: f.extras, comentarios: f.comentarios.trim(),
+        nombre: f.nombre.trim(), email: f.email.trim(), telefono: f.telefono.trim(),
+        origenCliente: f.origenCliente, consentimiento: f.consentimiento,
+        web: honeypot, // campo anti-spam oculto: debe llegar vacío
+      };
+      // "text/plain" evita el bloqueo CORS de Google Apps Script
+      const res = await fetch(EXPLORYAA_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(datos),
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || 'No se pudo enviar la solicitud.');
+      return json; // { ok: true, id: 'EXP-261111-AB12' }
+    }
+  </script>
   <script>
     /* =========================================================
        CONFIGURACIÓN
-       El envío del formulario está en conexion-formulario.js.
+       El envío del formulario está en enviarSolicitud() (primer <script>).
        ========================================================= */
     const EXPLORYAA_CONFIG = {
       // URL del chatbot real (opcional). Recibe { message } y devuelve { reply }.
@@ -1400,7 +1435,7 @@
 
       /* =========================================================
          FORMULARIO DE VIAJE (3 pasos)
-         Al final llama a enviarSolicitud(f) de conexion-formulario.js,
+         Al final llama a enviarSolicitud(f) (primer <script>),
          que lo envía a Google Apps Script (hoja + correos + Notion).
          ========================================================= */
       const form = $("#tripForm");
@@ -1597,7 +1632,7 @@
           console.error(err);
           const red = err instanceof TypeError || err instanceof SyntaxError;
           mostrarError(red
-            ? "No hemos podido conectar con nuestro servidor. Revisa tu conexión e inténtalo de nuevo. Si sigue fallando, escríbenos a hola@exploryaa.com."
+            ? `No hemos podido conectar con nuestro servidor. Revisa tu conexión e inténtalo de nuevo. Si sigue fallando, escríbenos a hola@exploryaa.com. (Detalle técnico: ${err.name}: ${err.message})`
             : err.message);
         } finally {
           btnSiguiente.disabled = false; btnAtras.disabled = false;
