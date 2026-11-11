@@ -1,0 +1,13 @@
+# Claves: nunca en Git
+.env
+# Bases de datos y propuestas generadas (datos de clientes)
+*.db
+*.sqlite3
+propuesta.md
+dossier_*.md
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/

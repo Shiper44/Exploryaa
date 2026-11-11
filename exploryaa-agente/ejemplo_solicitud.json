@@ -1,0 +1,16 @@
+{
+  "nombre": "Laura",
+  "paquete": "Itinerario Express",
+  "origen": "Barcelona",
+  "destino": "Roma",
+  "pais_destino": "IT",
+  "tipo_vuelo": "ida y vuelta",
+  "fecha_ida": "2027-03-12",
+  "fecha_vuelta": "2027-03-15",
+  "adultos": 2,
+  "ninos": 0,
+  "presupuesto_max": 900,
+  "estilo": ["gastronomía", "cultura"],
+  "experiencias_deseadas": 2,
+  "comentarios": "Escapada romántica, preferimos vuelos directos y un hotel con encanto en el centro."
+}

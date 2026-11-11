@@ -2,8 +2,8 @@
 
 Preguntas sobre el encargo de `prompt-web-operativa.md`. Junto a cada una está lo que se hará si no hay respuesta.
 
-## Bloqueante para la fase 4
-- **Carpeta `exploryaa-agente`** (`agente.py` y `herramientas/`): no está en el repositorio. Hay que subirla e indicar qué función se llama, qué recibe y qué devuelve, y qué claves de API usa.
+## Agente (resuelto)
+- La carpeta `exploryaa-agente/` ya está en el repositorio. Se llama con `Agente().planificar(solicitud)`, que recibe un diccionario como `ejemplo_solicitud.json` y devuelve la propuesta en Markdown. Usa las claves de Anthropic (obligatoria), Duffel, LiteAPI y Viator; sin ellas funciona con datos de prueba.
 
 ## Modelo de negocio (respondido)
 - **Dos tipos de producto:**
@@ -36,8 +36,11 @@ La fase 1 reutiliza `index.html` como base, cambiando los títulos a Space Grote
 
 ## Encargo del asistente de WhatsApp (`prompt-whatsapp-agente.md`)
 
-### Bloqueante
-- **Falta el zip de `exploryaa-agente`** (README.md, README_WHATSAPP.md, agente.py, herramientas/, whatsapp/, cargar_viaje.py, requirements.txt, .env.example). Ninguno de los dos encargos puede avanzar en el backend sin él.
+### Revisión del código del agente
+- **Firma de Meta:** `whatsapp/meta.py` acepta cualquier mensaje cuando `WA_APP_SECRET` está vacío. En producción debe rechazarlos.
+- **Precios fijos en el asistente:** `whatsapp/asistente.py` (`PAQUETES`) tiene escritos 199 / 449 / 1.290 / 2.990 € y no menciona el Pack de Planificación. Debe leer los precios del mismo sitio que la web.
+- **Mensajes en segundo plano:** `whatsapp/servidor.py` procesa cada mensaje en un hilo. Si el servidor se reinicia, los mensajes en curso se pierden; conviene una cola o un reintento al migrar.
+- **Datos de la solicitud:** el agente espera `presupuesto_max` como un número en euros para todos los viajeros. El formulario de la web lo pide por rangos y por persona, así que hay que convertirlo.
 
 ### Diferencias entre los dos encargos (hay que elegir una versión)
 | Tema | `prompt-web-operativa.md` | `prompt-whatsapp-agente.md` |
