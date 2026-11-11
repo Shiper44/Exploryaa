@@ -33,3 +33,30 @@ Preguntas sobre el encargo de `prompt-web-operativa.md`. Junto a cada una está 
 
 ## Nota de diseño
 La fase 1 reutiliza `index.html` como base, cambiando los títulos a Space Grotesk, el formulario a 3 pasos con resumen en vivo y los testimonios a huecos `[testimonio real]`.
+
+## Encargo del asistente de WhatsApp (`prompt-whatsapp-agente.md`)
+
+### Bloqueante
+- **Falta el zip de `exploryaa-agente`** (README.md, README_WHATSAPP.md, agente.py, herramientas/, whatsapp/, cargar_viaje.py, requirements.txt, .env.example). Ninguno de los dos encargos puede avanzar en el backend sin él.
+
+### Diferencias entre los dos encargos (hay que elegir una versión)
+| Tema | `prompt-web-operativa.md` | `prompt-whatsapp-agente.md` |
+|---|---|---|
+| Momento del pago | Antes de generar la propuesta (Stripe Checkout al enviar el formulario) | Solo cuando el cliente acepta la propuesta |
+| Estados | pendiente_pago, pagada, generando, enviada, error | recibida, propuesta_enviada, aceptada, pagada, reservada, en_viaje, finalizada, incidencia |
+| Framework | FastAPI | Flask o FastAPI, el más simple (el asistente actual usa Flask) |
+| Panel /admin | Solicitudes, propuesta, reenviar correo, incidencias | Además: editar propuesta, dossier, conversaciones de WhatsApp, pausar el asistente |
+
+**Propuesta:** tomar el flujo del encargo de WhatsApp como el definitivo, porque es el más reciente y encaja con la revisión humana:
+1. La solicitud se envía gratis.
+2. El agente genera la propuesta.
+3. La asesora la revisa y habla con el cliente.
+4. El cliente paga al aceptar, mediante un enlace de Stripe.
+5. La asesora reserva y, al marcar la solicitud como «reservada», el viaje se da de alta en WhatsApp.
+
+Así las fases de la web y las del backend quedan en un solo proyecto.
+
+### Pendiente de confirmar
+- ¿El **Pack de Planificación** también se paga al aceptar, o por adelantado?
+- Teléfono de la asesora para los avisos de WhatsApp (va en `.env`, no en el repositorio).
+- ¿Hay ya una cuenta de Meta Business con número verificado para la WhatsApp Cloud API?
