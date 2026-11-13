@@ -302,6 +302,13 @@
     .stepper li.active span { background: var(--black); color: var(--gold); }
     .stepper li.done { color: var(--black); border-top-color: var(--black); }
     .stepper li.done span { background: var(--gold); color: var(--black); }
+    .email-sugerencia { margin-top: 2px; padding: 12px 14px; border-radius: var(--radius-sm); background: #FBF7EA; border: 1px solid rgba(212,175,55,0.55); font-size: 0.88rem; color: #3d3d3d; }
+    .email-sugerencia strong { color: var(--black); overflow-wrap: anywhere; }
+    .email-sugerencia div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .btn-mini { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #cfcfcf; background: var(--white); color: var(--black); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+    .btn-mini:hover { border-color: var(--black); }
+    .btn-mini--si { background: var(--black); border-color: var(--black); color: var(--gold); }
+    .btn-mini--si:hover { background: #2a2a2a; }
     .form-error { background: #FDECEA; border: 1px solid #F5C2BD; color: #8A1F13; padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 0.9rem; }
     .field .opt, .field label .opt { font-weight: 400; color: #6b6b6b; }
     .inline-check--field { margin: -4px 0 20px; }
@@ -1057,6 +1064,13 @@
                     <label for="email">Email *</label>
                     <input type="email" id="email" name="email" autocomplete="email" maxlength="150" placeholder="tu@correo.com" />
                     <span class="error">Escribe un email válido: ahí te enviaremos la propuesta.</span>
+                    <div class="email-sugerencia" id="emailSugerencia" role="status" hidden>
+                      <p>¿Quisiste decir <strong id="emailSugerido"></strong>?</p>
+                      <div>
+                        <button type="button" class="btn-mini btn-mini--si" id="emailCorregir">Sí, corregir</button>
+                        <button type="button" class="btn-mini" id="emailMantener">No, está bien</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="grid-2">
@@ -1566,6 +1580,11 @@
           ok = marcar(campo("#nombre"), !f.nombre.trim()) && ok;
           ok = marcar(campo("#email"), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) && ok;
           ok = marcar($("#campoConsent"), !f.consentimiento) && ok;
+          if (ok && revisarEmail()) {
+            mostrarError("Revisa tu email antes de enviar: es donde recibirás la propuesta.");
+            $("#emailCorregir").focus();
+            return false;
+          }
         }
         if (!ok) {
           mostrarError("Revisa los campos marcados en rojo para continuar.");
@@ -1581,6 +1600,56 @@
       $$('input[type="checkbox"], input[type="radio"]', form).forEach(el => el.addEventListener("change", () => {
         const f = el.closest(".field"); if (f) f.classList.remove("invalid");
       }));
+
+      /* ---------- Erratas en el email (gmial.com → gmail.com) ---------- */
+      const DOMINIOS = ["gmail.com", "hotmail.com", "hotmail.es", "outlook.com", "outlook.es", "live.com",
+        "yahoo.com", "yahoo.es", "icloud.com", "me.com", "msn.com", "protonmail.com", "proton.me", "telefonica.net"];
+      const distancia = (a, b) => {
+        const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+        for (let j = 1; j <= b.length; j++) d[0][j] = j;
+        for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) {
+          d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+          if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+        }
+        return d[a.length][b.length];
+      };
+      function sugerirEmail(email) {
+        const m = email.trim().toLowerCase().match(/^([^\s@]+)@([^\s@]+)$/);
+        if (!m || DOMINIOS.includes(m[2])) return "";
+        let mejor = "", min = 3;
+        for (const dom of DOMINIOS) {
+          const dist = distancia(m[2], dom);
+          if (dist < min) { min = dist; mejor = dom; }
+        }
+        // Solo si se parece mucho (1 error, o 2 en dominios largos)
+        if (!mejor || min > (mejor.length >= 9 ? 2 : 1)) return "";
+        return `${m[1]}@${mejor}`;
+      }
+      const emailInput = $("#email"), cajaSugerencia = $("#emailSugerencia");
+      let emailRevisado = "";  // email que el cliente ya confirmó como correcto
+      function revisarEmail() {
+        const v = emailInput.value.trim();
+        const sug = v && v.toLowerCase() !== emailRevisado ? sugerirEmail(v) : "";
+        $("#emailSugerido").textContent = sug;
+        cajaSugerencia.hidden = !sug;
+        return sug;
+      }
+      // Se revisa mientras escribe (tras una pausa), no al salir del campo:
+      // así la sugerencia no mueve la casilla de privacidad justo cuando se va a pulsar.
+      let esperaEmail;
+      emailInput.addEventListener("input", () => {
+        clearTimeout(esperaEmail);
+        if (!cajaSugerencia.hidden) revisarEmail();
+        esperaEmail = setTimeout(revisarEmail, 700);
+      });
+      $("#emailCorregir").addEventListener("click", () => {
+        emailInput.value = $("#emailSugerido").textContent;
+        cajaSugerencia.hidden = true; ocultarError(); emailInput.focus(); actualizarResumen();
+      });
+      $("#emailMantener").addEventListener("click", () => {
+        emailRevisado = emailInput.value.trim().toLowerCase();
+        cajaSugerencia.hidden = true; ocultarError(); emailInput.focus();
+      });
 
       function mostrarError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
       function ocultarError() { errorBox.hidden = true; errorBox.textContent = ""; }
