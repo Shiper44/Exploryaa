@@ -1,0 +1,19 @@
+# Publicación en Netlify: solo se publica la carpeta web/
+# (el código del agente, los documentos y las integraciones NO se publican).
+[build]
+  publish = "web"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000"
+
+[[headers]]
+  for = "/legal/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

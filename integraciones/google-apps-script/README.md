@@ -2,7 +2,7 @@
 
 Servidor gratuito con Google Apps Script: guarda cada solicitud en una Google Sheet, envía al cliente un correo de confirmación con la marca (desde tu Gmail) y te avisa a ti.
 
-**URL publicada actualmente** (ya configurada en `index.html`, constante `EXPLORYAA_ENDPOINT`):
+**URL publicada actualmente** (ya configurada en `web/index.html`, constante `EXPLORYAA_ENDPOINT`):
 `https://script.google.com/macros/s/AKfycby2FxoEHU1cB3uJJUetMH6QeUrc8mPSMBT0qlVO7p_EiF_mGWZfQYlAuLcjwbUXP2MM/exec`
 
 Para comprobar que está activa, ábrela en el navegador: debe responder `{"ok":true,"servicio":"Formulario Exploryaa activo"}`.
@@ -12,7 +12,7 @@ Para comprobar que está activa, ábrela en el navegador: debe responder `{"ok":
 2. Menú Extensiones › Apps Script. Borra lo que haya y pega `Code.gs`. Guarda.
 3. Arriba elige la función `probarEnvio` y pulsa Ejecutar. Acepta los permisos de Google (Gmail y Hojas). Te llegarán dos correos de prueba y aparecerá la hoja "Solicitudes".
 4. Implementar › Nueva implementación › tipo "Aplicación web". Ejecutar como: Yo. Quién tiene acceso: Cualquier usuario. Copia la URL que termina en /exec.
-5. Pega esa URL en `index.html`, en la constante `EXPLORYAA_ENDPOINT`. El botón final del formulario ya llama a `enviarSolicitud(f)`.
+5. Pega esa URL en `web/index.html`, en la constante `EXPLORYAA_ENDPOINT`. El botón final del formulario ya llama a `enviarSolicitud(f)`.
 
 Notas: Gmail gratuito permite unos 100 correos al día desde Apps Script. Si cambias Code.gs, vuelve a Implementar › Gestionar implementaciones › Editar › Nueva versión (la URL no cambia).
 
