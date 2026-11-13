@@ -11,13 +11,13 @@ web/
 ├── index.html          ← la web (configuración al final, en EXPLORYAA_CONFIG)
 ├── 404.html            ← página de "no encontrada"
 ├── robots.txt, sitemap.xml
-├── logo.png            ← FALTA: copia aquí tu logo
+├── logo.png, favicon.png, apple-touch-icon.png, og-image.png
 └── legal/              ← aviso legal, privacidad, condiciones, cookies
 ```
 
 ## 1. Antes de publicar (lista de comprobación)
 
-1. **Logo:** guarda tu logo como `web/logo.png`. Mientras no esté, se ve un logo provisional en texto.
+1. **Logo:** ya está en `web/logo.png` (recortado, con fondo transparente). También hay `favicon.png`, `apple-touch-icon.png` (el avión) y `og-image.png` (el logo cuadrado para compartir en redes).
 2. **Configuración:** en `web/index.html` busca `EXPLORYAA_CONFIG` y rellena lo siguiente:
    - `precios`: cámbialos solo aquí. Pon `null` para que se muestre `[PRECIO] €`.
    - `telefono`, `registroAgencia` y `redes`: lo que dejes vacío no aparece en la web.
@@ -56,5 +56,5 @@ Se miden estos eventos: `inicio_formulario`, `paso_formulario` y `solicitud_envi
 ## 5. Después de publicar
 
 1. Da de alta la web en **Google Search Console** y envía `https://tudominio.com/sitemap.xml`.
-2. Comprueba la vista previa al compartir en WhatsApp o redes. Usa el logo (`og:image`); si quieres una imagen mejor, crea una de 1200×630 px y cambia esa línea.
+2. Comprueba la vista previa al compartir en WhatsApp o redes. Usa `og-image.png`; si quieres una imagen mejor, crea una de 1200×630 px y cambia esa línea.
 3. Sustituye los testimonios de ejemplo por opiniones reales en cuanto las tengas.

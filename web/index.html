@@ -12,10 +12,13 @@
   <meta property="og:locale" content="es_ES" />
   <!-- DOMINIO: cambia https://exploryaa.com por tu dominio real aquí, en sitemap.xml y en robots.txt -->
   <meta property="og:url" content="https://exploryaa.com/" />
-  <meta property="og:image" content="https://exploryaa.com/logo.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://exploryaa.com/og-image.png" />
+  <meta property="og:image:width" content="500" />
+  <meta property="og:image:height" content="500" />
+  <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://exploryaa.com/" />
-  <link rel="icon" href="logo.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://images.unsplash.com" />
@@ -27,7 +30,7 @@
     "name": "Exploryaa – Travel Online Agency",
     "slogan": "Tú sueñas el viaje, nosotros lo hacemos realidad",
     "url": "https://exploryaa.com/",
-    "logo": "https://exploryaa.com/logo.png",
+    "logo": "https://exploryaa.com/og-image.png",
     "email": "hola@exploryaa.com",
     "areaServed": "ES",
     "availableLanguage": "es"
@@ -129,7 +132,7 @@
     .header.scrolled { background: rgba(11, 11, 11, 0.96); border-bottom-color: var(--line); }
     .header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
-    .logo { display: flex; align-items: center; height: 52px; }
+    .logo { display: flex; align-items: center; height: 64px; }
     .logo img { height: 100%; width: auto; object-fit: contain; }
     /* Logo de respaldo (se muestra si logo.png no existe) */
     .logo-fallback { display: none; flex-direction: column; line-height: 1; position: relative; padding: 4px 0; }
@@ -509,7 +512,7 @@
        ========================================================= */
     .footer { background: var(--black); padding: 90px 0 30px; border-top: 1px solid var(--line); }
     .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
-    .footer .logo { height: 64px; margin-bottom: 22px; }
+    .footer .logo { height: 96px; margin-bottom: 22px; }
     .footer__brand p { color: var(--grey); font-size: 0.92rem; max-width: 300px; margin-bottom: 24px; }
     .footer h5 { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 600; }
     .footer ul { list-style: none; display: grid; gap: 12px; }
@@ -621,7 +624,7 @@
       .nav a:not(.btn)::after { display: none; }
       .nav .btn { margin-top: 18px; padding: 14px; }
       .burger { display: block; }
-      .logo { height: 44px; }
+      .logo { height: 54px; }
       .steps { grid-template-columns: 1fr; gap: 56px; }
       .steps::before { top: 0; bottom: 0; left: 50%; right: auto; width: 1px; height: auto; background: repeating-linear-gradient(180deg, var(--gold) 0 8px, transparent 8px 16px); opacity: 0.35; }
       .step { background: var(--white); padding: 10px 0; }
