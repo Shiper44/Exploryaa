@@ -328,7 +328,20 @@
     .extras__list { display: flex; flex-wrap: wrap; gap: 14px; }
     .chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid var(--line); font-size: 0.9rem; }
     .chip svg { width: 18px; height: 18px; color: var(--gold); }
-    .pkg-note { text-align: center; margin-top: 26px; font-size: 0.82rem; color: var(--grey); }
+    .pkg-note { text-align: center; margin-top: 26px; font-size: 0.82rem; color: var(--grey); max-width: 760px; margin-left: auto; margin-right: auto; }
+    .pkg__from { flex-basis: 100%; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #7a7a7a; margin-bottom: -2px; }
+    .pkg ul { align-content: start; }
+    .pkg--premium .pkg__from { color: var(--grey); }
+    .pkg__meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .pkg__meta span { font-size: 0.78rem; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: #f2f2f2; color: #3d3d3d; }
+    .pkg--premium .pkg__meta span { background: rgba(255,255,255,0.08); color: #e0e0e0; }
+    .packages--3 { grid-template-columns: repeat(3, 1fr); max-width: 1040px; margin: 0 auto; }
+    .pkg--plan { padding-top: 34px; }
+    .pkg--plan .pkg__badge { top: -14px; right: 22px; }
+    .nav .nav__cuenta { display: inline-flex; align-items: center; gap: 8px; }
+    .nav .nav__cuenta svg { width: 18px; height: 18px; color: var(--gold); }
+    .testi--hueco { border-style: dashed; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px; }
+    .testi--hueco p { color: var(--grey); font-style: italic; }
 
     /* =========================================================
        FORMULARIO
@@ -646,9 +659,11 @@
        ========================================================= */
     @media (max-width: 1100px) {
       .packages { grid-template-columns: repeat(2, 1fr); }
+      .packages--3 { grid-template-columns: repeat(3, 1fr); }
       .footer__grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 920px) {
+      .packages--3 { grid-template-columns: 1fr; max-width: 460px; gap: 34px; }
       :root { --header-h: 68px; }
       .section { padding: 90px 0; }
       .nav {
@@ -698,6 +713,8 @@
   <!-- Iconos reutilizables -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Zm0 0v14m6-12v14"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
       <symbol id="i-plane" viewBox="0 0 24 24"><path fill="currentColor" d="M21.5 15.5v-2l-8-5V3a1.5 1.5 0 0 0-3 0v5.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5l-2-1.5v-5l8 2.5Z"/></symbol>
@@ -733,9 +750,10 @@
 
       <nav class="nav" id="nav" aria-label="Menú principal">
         <a href="#como-funciona">Cómo funciona</a>
+        <a href="#planificacion">Planificación</a>
         <a href="#paquetes">Paquetes</a>
-        <a href="#opiniones">Opiniones</a>
         <a href="#faq">Preguntas</a>
+        <a href="/mis-viajes" class="nav__cuenta"><svg aria-hidden="true"><use href="#i-user"/></svg>Mis viajes</a>
         <a href="#disena" class="btn btn--gold">Diseña mi viaje</a>
       </nav>
 
@@ -760,15 +778,15 @@
         <div class="hero__content">
           <div class="hero__badge reveal"><b>IA</b> Agencia de viajes online 100% impulsada por inteligencia artificial</div>
           <h1 class="reveal d1"><span class="flap" data-text="Tú sueñas el viaje,">Tú sueñas el viaje,</span><em class="led">nosotros lo hacemos realidad.</em></h1>
-          <p class="lead reveal d2">Cuéntanos tu idea y en menos de 48 horas recibirás en tu correo una propuesta con vuelos, alojamiento, experiencias y un itinerario hecho solo para ti. Sin buscar. Sin comparar. Y solo pagas si te convence.</p>
+          <p class="lead reveal d2">Cuéntanos tu idea y te diseñamos el viaje: solo la planificación, para que reserves tú, o el viaje completo con vuelos, alojamiento y experiencias reservados por nosotros. Todo te espera en tu área «Mis viajes».</p>
           <div class="hero__actions reveal d3">
             <a href="#disena" class="btn btn--gold">Diseña mi viaje <svg><use href="#i-arrow"/></svg></a>
-            <a href="#como-funciona" class="btn btn--ghost">Ver cómo funciona</a>
+            <a href="#planificacion" class="btn btn--ghost">Ver paquetes</a>
           </div>
           <div class="hero__stats reveal d4">
             <div><strong>48 h</strong><span>para recibir tu propuesta</span></div>
-            <div><strong>0 €</strong><span>hasta que aceptas la propuesta</span></div>
-            <div><strong>0 búsquedas</strong><span>nosotros lo hacemos todo</span></div>
+            <div><strong data-precio="planificacion.simple">29 €</strong><span>desde, tu planificación</span></div>
+            <div><strong>0 €</strong><span>hasta que aceptas un paquete</span></div>
           </div>
         </div>
       </div>
@@ -803,12 +821,12 @@
           <article class="step reveal d2">
             <div class="step__icon"><svg><use href="#i-mail"/></svg><span class="step__num">2</span></div>
             <h3>Recibe tu propuesta</h3>
-            <p>En menos de 48 horas te enviamos por correo vuelos, alojamiento, experiencias e itinerario día a día. Una persona del equipo la revisa antes.</p>
+            <p>Tu planificación, o la propuesta de tu paquete con vuelos, alojamiento y experiencias, llega a tu correo y a «Mis viajes». Una persona del equipo la revisa antes.</p>
           </article>
           <article class="step reveal d4">
             <div class="step__icon"><svg><use href="#i-plane"/></svg><span class="step__num">3</span></div>
-            <h3>Acepta y viaja</h3>
-            <p>Si te convence, la aceptas y pagas. Nosotros hacemos las reservas y tú solo tienes que hacer la maleta.</p>
+            <h3>Disfruta tu viaje</h3>
+            <p>Itinerario día a día, mapa, reservas y documentos: todo en tu área «Mis viajes», también durante el viaje. Tú solo haz la maleta.</p>
           </article>
         </div>
 
@@ -829,14 +847,76 @@
     </div>
 
     <!-- =====================================================
-         4. PAQUETES
+         4. PLANIFICACIÓN (tú reservas, nosotros lo diseñamos)
          ===================================================== -->
-    <section class="section section--black" id="paquetes">
+    <section class="section section--black" id="planificacion">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow reveal">Paquetes</span>
-          <h2 class="section-title reveal d1">Un precio único. <em>Todo hecho.</em></h2>
-          <p class="section-lead reveal d2">Elige cuánto tiempo quieres desconectar. Precio por persona, con todo lo que necesitas reservado y organizado para ti.</p>
+          <span class="eyebrow reveal">Planificación</span>
+          <h2 class="section-title reveal d1">Tú reservas, <em>nosotros lo diseñamos.</em></h2>
+          <p class="section-lead reveal d2">Te entregamos el viaje pensado al detalle y tú reservas cuando y donde quieras. Precio por viaje para escapadas de hasta <span data-dato="dias_incluidos">4</span> días; si tu viaje es más largo, verás el precio exacto en el formulario antes de pagar.</p>
+        </div>
+
+        <div class="packages packages--3">
+          <article class="pkg pkg--plan reveal">
+            <span class="pkg__tag">Lo esencial</span>
+            <h3>Simple</h3>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="planificacion.simple">29 €</strong><span>/ viaje</span></div>
+            <div class="pkg__meta"><span data-entrega="simple">PDF en 72 h</span><span data-revisiones="planificacion.simple">Sin revisiones</span></div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Itinerario básico día a día: mañana, tarde y noche</li>
+              <li><svg><use href="#i-check"/></svg>Lugares imprescindibles</li>
+              <li><svg><use href="#i-check"/></svg>Zona recomendada para alojarte</li>
+            </ul>
+            <a href="#disena" class="btn btn--outline-dark" data-servicio="plan-simple">Elegir Simple</a>
+          </article>
+
+          <article class="pkg pkg--plan pkg--popular reveal d1">
+            <span class="pkg__badge">★ Más popular</span>
+            <span class="pkg__tag">Lo más completo</span>
+            <h3>Estándar</h3>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="planificacion.estandar">59 €</strong><span>/ viaje</span></div>
+            <div class="pkg__meta"><span data-entrega="estandar">48 h</span><span data-revisiones="planificacion.estandar">1 revisión</span></div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Todo lo de Simple</li>
+              <li><svg><use href="#i-check"/></svg>Horarios y cómo moverte</li>
+              <li><svg><use href="#i-check"/></svg>2-3 opciones de vuelo y alojamiento con precio orientativo y enlace para reservar</li>
+              <li><svg><use href="#i-check"/></svg>Restaurantes según tus gustos</li>
+              <li><svg><use href="#i-check"/></svg>Mapa con los puntos del itinerario</li>
+            </ul>
+            <a href="#disena" class="btn btn--gold" data-servicio="plan-estandar">Elegir Estándar</a>
+          </article>
+
+          <article class="pkg pkg--plan pkg--premium reveal d2">
+            <span class="pkg__badge">Premium</span>
+            <span class="pkg__tag">Al detalle</span>
+            <h3>Premium</h3>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="planificacion.premium">99 €</strong><span>/ viaje</span></div>
+            <div class="pkg__meta"><span data-entrega="premium">24-48 h</span><span data-revisiones="planificacion.premium">2 revisiones</span></div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Todo lo de Estándar</li>
+              <li><svg><use href="#i-check"/></svg>Mapa interactivo con restaurantes, miradores y puntos de interés</li>
+              <li><svg><use href="#i-check"/></svg>Actividades gratuitas por la zona y eventos en tus fechas</li>
+              <li><svg><use href="#i-check"/></svg>Plan B para días de lluvia y consejos locales</li>
+              <li><svg><use href="#i-check"/></svg>Dossier digital maquetado</li>
+              <li><svg><use href="#i-check"/></svg>Dudas por WhatsApp hasta la salida</li>
+            </ul>
+            <a href="#disena" class="btn btn--gold" data-servicio="plan-premium">Elegir Premium</a>
+          </article>
+        </div>
+        <p class="pkg-note">Precio por viaje, IVA incluido. Se paga al enviar el formulario y recibes tu planificación en «Mis viajes» y por correo.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         5. PAQUETES CON RESERVAS
+         ===================================================== -->
+    <section class="section section--dark" id="paquetes">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow reveal">Paquetes con reservas</span>
+          <h2 class="section-title reveal d1">Nosotros lo reservamos. <em>Tú solo viajas.</em></h2>
+          <p class="section-lead reveal d2">Vuelos, alojamiento y experiencias reservados por nuestro equipo. Precio «desde» por persona: el precio final llega en tu propuesta personalizada, sin compromiso.</p>
         </div>
 
         <div class="packages">
@@ -845,7 +925,7 @@
             <div class="pkg__img" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=70')" role="img" aria-label="París al atardecer (foto de ejemplo)"></div>
             <span class="pkg__tag">Escapada</span>
             <h3>Mini Escapada 2D1N</h3>
-            <div class="pkg__price"><strong data-precio="mini">199 €</strong><span>/ persona</span></div>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="paquetes.mini">199 €</strong><span>/ persona</span></div>
             <div class="pkg__duration">2 días · 1 noche</div>
             <p class="pkg__ideal"><b>Ideal para</b> escapadas románticas o fines de semana improvisados.</p>
             <ul>
@@ -863,7 +943,7 @@
             <div class="pkg__img" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=70')" role="img" aria-label="Londres con el Big Ben (foto de ejemplo)"></div>
             <span class="pkg__tag">City break</span>
             <h3>Itinerario Express</h3>
-            <div class="pkg__price"><strong data-precio="express">449 €</strong><span>/ persona</span></div>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="paquetes.express">449 €</strong><span>/ persona</span></div>
             <div class="pkg__duration">2 a 5 días</div>
             <p class="pkg__ideal"><b>Ideal para</b> puentes y city breaks con el tiempo bien aprovechado.</p>
             <ul>
@@ -881,7 +961,7 @@
             <div class="pkg__img" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=70')" role="img" aria-label="Templo en Bali (foto de ejemplo)"></div>
             <span class="pkg__tag">Vacaciones</span>
             <h3>Viaje Completo</h3>
-            <div class="pkg__price"><strong data-precio="completo">1.290 €</strong><span>/ persona</span></div>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="paquetes.completo">1.290 €</strong><span>/ persona</span></div>
             <div class="pkg__duration">5 a 10 días</div>
             <p class="pkg__ideal"><b>Ideal para</b> vacaciones, lunas de miel o viajes en familia.</p>
             <ul>
@@ -899,7 +979,7 @@
             <div class="pkg__img" style="background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=70')" role="img" aria-label="Villa sobre el agua en Maldivas (foto de ejemplo)"></div>
             <span class="pkg__tag">A medida</span>
             <h3>Exploryaa Premium</h3>
-            <div class="pkg__price"><strong data-precio="premium">2.990 €</strong><span>/ persona</span></div>
+            <div class="pkg__price"><span class="pkg__from">desde</span><strong data-precio="paquetes.premium">2.990 €</strong><span>/ persona</span></div>
             <div class="pkg__duration">10 a 21 días, a medida</div>
             <p class="pkg__ideal"><b>Ideal para</b> el viaje de tu vida, sin límites ni preocupaciones.</p>
             <ul>
@@ -922,7 +1002,7 @@
             <span class="chip"><svg><use href="#i-ticket"/></svg>Actividades adicionales</span>
           </div>
         </div>
-        <p class="pkg-note">Precios por persona. El precio final de vuelos y hotel puede variar según destino, fechas y disponibilidad; siempre te lo confirmamos antes de pagar.</p>
+        <p class="pkg-note">Precios «desde» por persona. El precio final (coste real de vuelos, alojamiento y actividades en tus fechas + nuestros honorarios) aparece en tu propuesta personalizada. Pedirla es gratis y solo pagas si la aceptas.</p>
       </div>
     </section>
 
@@ -973,19 +1053,19 @@
                   <div class="pkg-select" role="radiogroup" aria-labelledby="pkgLabel">
                     <div class="pkg-option">
                       <input type="radio" name="paquete" id="p-mini" value="Mini Escapada 2D1N" data-pkg="mini" />
-                      <label for="p-mini"><strong>Mini Escapada 2D1N</strong><span>2 días · 1 noche</span><em data-precio="mini">199 €</em></label>
+                      <label for="p-mini"><strong>Mini Escapada 2D1N</strong><span>2 días · 1 noche</span><em data-precio="paquetes.mini">199 €</em></label>
                     </div>
                     <div class="pkg-option">
                       <input type="radio" name="paquete" id="p-express" value="Itinerario Express" data-pkg="express" />
-                      <label for="p-express"><strong>Itinerario Express</strong><span>2-5 días</span><em data-precio="express">449 €</em></label>
+                      <label for="p-express"><strong>Itinerario Express</strong><span>2-5 días</span><em data-precio="paquetes.express">449 €</em></label>
                     </div>
                     <div class="pkg-option">
                       <input type="radio" name="paquete" id="p-completo" value="Viaje Completo" data-pkg="completo" />
-                      <label for="p-completo"><strong>Viaje Completo ★</strong><span>5-10 días · Más popular</span><em data-precio="completo">1.290 €</em></label>
+                      <label for="p-completo"><strong>Viaje Completo ★</strong><span>5-10 días · Más popular</span><em data-precio="paquetes.completo">1.290 €</em></label>
                     </div>
                     <div class="pkg-option">
                       <input type="radio" name="paquete" id="p-premium" value="Exploryaa Premium" data-pkg="premium" />
-                      <label for="p-premium"><strong>Exploryaa Premium</strong><span>10-21 días · A medida</span><em data-precio="premium">2.990 €</em></label>
+                      <label for="p-premium"><strong>Exploryaa Premium</strong><span>10-21 días · A medida</span><em data-precio="paquetes.premium">2.990 €</em></label>
                     </div>
                     <div class="pkg-option pkg-option--wide">
                       <input type="radio" name="paquete" id="p-nose" value="Aún no lo sé" />
@@ -1225,29 +1305,23 @@
         </div>
 
         <div class="testimonials">
-          <article class="testi reveal">
-            <span class="sample-tag">Ejemplo</span>
+          <article class="testi testi--hueco reveal">
             <div class="testi__quote">“</div>
-            <div class="testi__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Llevaba dos años diciendo «este año sí viajo». Rellené el formulario en el sofá y al día siguiente tenía en el correo vuelos, hotel y un plan para Roma. Ojalá lo hubiera descubierto antes.</p>
-            <div class="testi__author"><div class="testi__avatar">LM</div><div><strong>Laura M.</strong><span>Mini Escapada · Roma</span></div></div>
+            <p>[testimonio real]</p>
+            <div class="testi__author"><div class="testi__avatar">?</div><div><strong>[Nombre del cliente]</strong><span>[Paquete · Destino]</span></div></div>
           </article>
-          <article class="testi reveal d2">
-            <span class="sample-tag">Ejemplo</span>
+          <article class="testi testi--hueco reveal d2">
             <div class="testi__quote">“</div>
-            <div class="testi__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Viajo por trabajo cada mes y odiaba organizar mis días libres. Con Exploryaa le doy dos ideas y me llega un itinerario con horarios perfectos. Es mi asistente de viajes personal.</p>
-            <div class="testi__author"><div class="testi__avatar">JR</div><div><strong>Javier R.</strong><span>Itinerario Express · Lisboa</span></div></div>
+            <p>[testimonio real]</p>
+            <div class="testi__author"><div class="testi__avatar">?</div><div><strong>[Nombre del cliente]</strong><span>[Paquete · Destino]</span></div></div>
           </article>
-          <article class="testi reveal d4">
-            <span class="sample-tag">Ejemplo</span>
+          <article class="testi testi--hueco reveal d4">
             <div class="testi__quote">“</div>
-            <div class="testi__stars" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Nuestra luna de miel en Bali fue de película. El dossier tenía hasta los mejores sitios para ver el atardecer. Nosotros solo tuvimos que hacer la maleta.</p>
-            <div class="testi__author"><div class="testi__avatar">AP</div><div><strong>Ana y Pablo</strong><span>Viaje Completo · Bali</span></div></div>
+            <p>[testimonio real]</p>
+            <div class="testi__author"><div class="testi__avatar">?</div><div><strong>[Nombre del cliente]</strong><span>[Paquete · Destino]</span></div></div>
           </article>
         </div>
-        <p class="sample-note">* Testimonios de ejemplo con fines ilustrativos. Se sustituirán por opiniones reales de clientes.</p>
+        <p class="sample-note">Muy pronto, las opiniones de nuestros primeros viajeros.</p>
       </div>
     </section>
 
@@ -1270,20 +1344,32 @@
 
           <div class="faq-list reveal d1">
             <div class="faq-item">
-              <button class="faq-q" aria-expanded="false">¿Cuándo recibo mi propuesta? ¿Tengo que pagar antes?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>En menos de 48 horas desde que envías el formulario, y pedirla es gratis. Solo pagas si la propuesta te convence y la aceptas; entonces hacemos las reservas y te enviamos el dossier de tu viaje.</p></div>
+              <button class="faq-q" aria-expanded="false">¿Cuándo pago?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>Depende de lo que elijas. <b>Planificación:</b> pagas al enviar el formulario, y el precio exacto lo ves calculado antes de pagar. <b>Paquetes con reservas:</b> pedir tu propuesta es gratis; solo pagas si la aceptas, y entonces hacemos las reservas.</p></div>
             </div>
             <div class="faq-item">
-              <button class="faq-q" aria-expanded="false">¿Qué incluye exactamente el precio?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Cada paquete indica lo que incluye: vuelos y alojamiento en todos, actividades a partir del Itinerario Express y seguro a partir del Viaje Completo. Es un precio único por persona. Si tu destino o tus fechas suponen un coste distinto, te lo confirmamos antes de cobrarte nada.</p></div>
+              <button class="faq-q" aria-expanded="false">¿Por qué el precio es «desde»?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>Porque cada viaje es distinto. En la <b>planificación</b>, el precio «desde» cubre viajes de hasta <span data-dato="dias_incluidos">4</span> días y un destino; cada día o destino adicional suma un pequeño importe que verás calculado en el formulario. En los <b>paquetes</b>, el precio final es el coste real de vuelos, alojamiento y actividades en tus fechas más nuestros honorarios, y te lo damos cerrado en tu propuesta antes de pagar nada.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false">¿Qué diferencia hay entre la planificación y un paquete?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>Con la <b>planificación</b> te diseñamos el viaje (itinerario, zonas, opciones y enlaces) y tú lo reservas por tu cuenta. Con un <b>paquete</b> nos encargamos también de reservar vuelos, alojamiento y actividades, y te subimos los billetes y confirmaciones a «Mis viajes».</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false">¿Cuándo recibo mi propuesta o mi planificación?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>La propuesta de un paquete, en menos de 48 horas. La planificación, según el nivel: <span data-entrega="simple">PDF en 72 h</span> en Simple, <span data-entrega="estandar">48 h</span> en Estándar y <span data-entrega="premium">24-48 h</span> en Premium.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" aria-expanded="false">¿Qué es «Mis viajes»?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>Tu área privada en Exploryaa. Se crea sola con tu email al enviar el formulario, sin contraseñas: entras con un enlace que te enviamos al correo o con tu cuenta de Google. Allí ves el estado de tu viaje, la propuesta, el itinerario con mapa, tus reservas, los pagos y los mensajes con tu asesora.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-q" aria-expanded="false">¿Cómo usáis la inteligencia artificial?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Usamos IA para entender tu idea, comparar miles de combinaciones de vuelos y alojamientos y crear un itinerario a tu medida. Te lo decimos con total transparencia: el formulario y el asistente utilizan IA, y un equipo humano supervisa las reservas.</p></div>
+              <div class="faq-a"><p>Usamos IA para entender tu idea, comparar combinaciones de vuelos y alojamientos y crear un itinerario a tu medida. Te lo decimos con total transparencia: el formulario y el asistente utilizan IA, y una persona del equipo revisa cada propuesta y cada reserva.</p></div>
             </div>
             <div class="faq-item">
-              <button class="faq-q" aria-expanded="false">¿Y si no me gusta el itinerario?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Cada paquete incluye revisiones: 1 en Mini Escapada e Itinerario Express, hasta 2 en Viaje Completo e ilimitadas en Premium. Nos dices qué cambiar y lo ajustamos.</p></div>
+              <button class="faq-q" aria-expanded="false">¿Y si no me gusta lo que recibo?<span class="plus" aria-hidden="true"></span></button>
+              <div class="faq-a"><p>Cada nivel incluye revisiones: nos dices qué cambiar y lo ajustamos. En la planificación, Simple no incluye revisiones, Estándar 1 y Premium 2. En los paquetes, 1 en Mini Escapada e Itinerario Express, hasta 2 en Viaje Completo e ilimitadas en Premium.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-q" aria-expanded="false">¿Qué pasa si no sé a dónde quiero ir?<span class="plus" aria-hidden="true"></span></button>
@@ -1291,11 +1377,11 @@
             </div>
             <div class="faq-item">
               <button class="faq-q" aria-expanded="false">¿Puedo cancelar o cambiar mi viaje?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Las condiciones de cancelación dependen de las tarifas de cada aerolínea y alojamiento, y siempre te las indicamos antes de pagar. Te recomendamos añadir el seguro opcional para viajar con total tranquilidad.</p></div>
+              <div class="faq-a"><p>En los paquetes, las condiciones de cancelación dependen de las tarifas de cada aerolínea y alojamiento, y siempre te las indicamos en la propuesta antes de pagar. Te recomendamos añadir el seguro opcional para viajar con total tranquilidad.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-q" aria-expanded="false">¿Es seguro pagar en Exploryaa?<span class="plus" aria-hidden="true"></span></button>
-              <div class="faq-a"><p>Sí. Los pagos se procesan a través de una pasarela certificada y nunca almacenamos los datos de tu tarjeta.</p></div>
+              <div class="faq-a"><p>Sí. Los pagos se procesan a través de una pasarela de pago certificada y nunca vemos ni guardamos los datos de tu tarjeta.</p></div>
             </div>
           </div>
         </div>
@@ -1343,8 +1429,9 @@
           <h5>Exploryaa</h5>
           <ul>
             <li><a href="#como-funciona">Cómo funciona</a></li>
-            <li><a href="#paquetes">Paquetes</a></li>
-            <li><a href="#opiniones">Opiniones</a></li>
+            <li><a href="#planificacion">Planificación</a></li>
+            <li><a href="#paquetes">Paquetes con reservas</a></li>
+            <li><a href="/mis-viajes">Mis viajes</a></li>
             <li><a href="#faq">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -1364,7 +1451,7 @@
           <ul>
             <li><a href="mailto:hola@exploryaa.com">hola@exploryaa.com</a></li>
             <li id="contactoTelefono" hidden><a href="#"></a></li>
-            <li id="contactoRegistro" hidden>Nº de registro de agencia:<br/><strong style="color:#fff"></strong></li>
+            <li id="contactoRegistro">N.º de registro:<br/><strong style="color:#fff">[PENDIENTE]</strong></li>
           </ul>
         </div>
       </div>
@@ -1452,14 +1539,19 @@
        El envío del formulario está en enviarSolicitud() (primer <script>).
        ========================================================= */
     const EXPLORYAA_CONFIG = {
-      // PRECIOS por persona, en euros. Cámbialos SOLO aquí: se actualizan en
-      // las tarjetas, el formulario, el resumen y el asistente.
-      // Pon null para mostrar "[PRECIO] €" mientras no estén decididos.
-      precios: { mini: 199, express: 449, completo: 1290, premium: 2990 },
+      // PRECIOS: los reales están en config/precios.toml y llegan del servidor
+      // (/api/precios). Estos solo se usan si el servidor no responde.
+      precios: {
+        planificacion: { dias_incluidos: 4, niveles: {
+          simple: { desde: 29, revisiones: 0, entrega: "PDF en 72 h" },
+          estandar: { desde: 59, revisiones: 1, entrega: "48 h" },
+          premium: { desde: 99, revisiones: 2, entrega: "24-48 h" } } },
+        paquetes: { mini: { desde: 199 }, express: { desde: 449 }, completo: { desde: 1290 }, premium: { desde: 2990 } }
+      },
 
       // CONTACTO. Lo que quede vacío no se muestra en la web.
       telefono: "",            // Ej. "+34 600 000 000"
-      registroAgencia: "",     // Nº de registro de agencia de viajes de tu comunidad autónoma
+      registroAgencia: "",     // N.º de registro de agencia de viajes; vacío muestra "[PENDIENTE]"
       redes: {                 // URL completa de cada perfil, p. ej. "https://instagram.com/exploryaa"
         Instagram: "", TikTok: "", Facebook: "", YouTube: "",
         WhatsApp: ""           // Ej. "https://wa.me/34600000000"
@@ -1576,20 +1668,44 @@
 
       /* ---------- Precios (desde EXPLORYAA_CONFIG.precios) ---------- */
       const C = EXPLORYAA_CONFIG;
-      const precioTexto = clave => {
-        const v = C.precios[clave];
-        return typeof v === "number" ? String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €" : "[PRECIO] €";
+      // clave: "paquetes.mini" o "planificacion.simple"
+      const precioDesde = clave => {
+        const [grupo, k] = clave.split(".");
+        const P = C.precios;
+        const item = grupo === "planificacion" ? P.planificacion.niveles[k] : P.paquetes[k];
+        return item && typeof item.desde === "number" ? item.desde : null;
       };
-      $$("[data-precio]").forEach(el => { el.textContent = precioTexto(el.dataset.precio); });
+      const precioTexto = clave => {
+        const v = precioDesde(clave);
+        return v === null ? "[PRECIO] €" : String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " €";
+      };
+      const textoRevisiones = n => n < 0 ? "Revisiones ilimitadas" : n === 0 ? "Sin revisiones" : n === 1 ? "1 revisión" : `${n} revisiones`;
+      function pintarPrecios() {
+        $$("[data-precio]").forEach(el => { el.textContent = precioTexto(el.dataset.precio); });
+        const plan = C.precios.planificacion;
+        $$('[data-dato="dias_incluidos"]').forEach(el => { el.textContent = plan.dias_incluidos; });
+        $$("[data-entrega]").forEach(el => { const n = plan.niveles[el.dataset.entrega]; if (n && n.entrega) el.textContent = n.entrega; });
+        $$("[data-revisiones]").forEach(el => {
+          const [g, k] = el.dataset.revisiones.split(".");
+          const item = g === "planificacion" ? plan.niveles[k] : C.precios.paquetes[k];
+          if (item && typeof item.revisiones === "number") el.textContent = textoRevisiones(item.revisiones);
+        });
+        // El resumen del formulario se define más abajo; al cargar la página aún no existe
+        try { actualizarResumen(); } catch (e) { /* se pinta al iniciarse el formulario */ }
+      }
+      pintarPrecios();
+      // Precios reales desde el servidor (config/precios.toml)
+      fetch("/api/precios", { headers: { Accept: "application/json" } })
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(d => { if (d && d.planificacion && d.paquetes) { C.precios = d; pintarPrecios(); } })
+        .catch(() => { /* sin servidor: se quedan los precios de respaldo */ });
 
       /* ---------- Contacto y redes (se ocultan si están vacíos) ---------- */
       if (C.telefono) {
         const li = $("#contactoTelefono"), a = $("a", li);
         a.href = "tel:" + C.telefono.replace(/[^\d+]/g, ""); a.textContent = C.telefono; li.hidden = false;
       }
-      if (C.registroAgencia) {
-        const li = $("#contactoRegistro"); $("strong", li).textContent = C.registroAgencia; li.hidden = false;
-      }
+      if (C.registroAgencia) $("#contactoRegistro strong").textContent = C.registroAgencia;
       $$("[data-red]").forEach(a => {
         const url = C.redes[a.dataset.red];
         if (url) a.href = url; else a.remove();
@@ -1752,7 +1868,7 @@
         $("#resumen").innerHTML = filas.map(([k, v]) => `<div><dt>${k}</dt><dd>${escHTML(v)}</dd></div>`).join("");
         const sel = $('input[name="paquete"]:checked', form);
         $("#resumenPrecio").innerHTML = sel && sel.dataset.pkg
-          ? `<span>Desde</span> <strong>${precioTexto(sel.dataset.pkg)}</strong> <span>/ persona</span>` : "";
+          ? `<span>Desde</span> <strong>${precioTexto("paquetes." + sel.dataset.pkg)}</strong> <span>/ persona</span>` : "";
       }
       form.addEventListener("input", actualizarResumen);
       form.addEventListener("change", actualizarResumen);
@@ -1897,6 +2013,10 @@
           const ok = $("#formSuccess"); ok.classList.add("show"); ok.focus();
           ok.scrollIntoView({ behavior: "smooth", block: "center" });
           document.dispatchEvent(new CustomEvent("exploryaa:solicitud_enviada", { detail: { id: r && r.id, paquete: f.paquete } }));
+          // Página de confirmación (sin datos personales en la dirección)
+          const q = new URLSearchParams({ tipo: "propuesta" });
+          if (r && r.id) q.set("id", r.id);
+          setTimeout(() => location.assign("/gracias?" + q.toString()), 400);
         } catch (err) {
           console.error(err);
           const red = err instanceof TypeError || err instanceof SyntaxError;
@@ -1923,10 +2043,10 @@
       document.addEventListener("keydown", e => { if (e.key === "Escape") toggle(false); });
 
       const answers = {
-        paquete: `Depende de tu tiempo: para un finde, la <b>Mini Escapada</b> (${precioTexto("mini")}). Para un puente, el <b>Itinerario Express</b> (${precioTexto("express")}). Para vacaciones o luna de miel, el <b>Viaje Completo</b> (${precioTexto("completo")}), el favorito. Y si quieres algo único y con asistencia durante el viaje, <b>Premium</b> (${precioTexto("premium")}).`,
+        paquete: `Si prefieres reservar tú, te diseñamos el viaje con la <b>Planificación</b> (desde ${precioTexto("planificacion.simple")} por viaje). Si quieres que lo reservemos todo: <b>Mini Escapada</b> (desde ${precioTexto("paquetes.mini")}/persona), <b>Itinerario Express</b> (desde ${precioTexto("paquetes.express")}), <b>Viaje Completo</b> (desde ${precioTexto("paquetes.completo")}), el favorito, o <b>Premium</b> (desde ${precioTexto("paquetes.premium")}).`,
         tiempo: "Recibirás tu propuesta personalizada en tu correo <b>en menos de 48 horas</b> desde que envías el formulario. ⏱️",
         sorpresa: "¡Me encanta! Marca la casilla <b>«Sorpréndeme»</b> en el formulario y cuéntanos qué te apetece. Nosotros elegimos el destino perfecto. ✨",
-        precio: "Todos nuestros paquetes tienen un <b>precio único por persona</b>, sin comisiones ocultas. Pedir tu propuesta es gratis: <b>solo pagas si la aceptas</b>.",
+        precio: "Nuestros precios son <b>«desde»</b>: la <b>planificación</b> se paga al enviar el formulario, con el precio exacto calculado antes; en los <b>paquetes</b>, pedir la propuesta es gratis y <b>solo pagas si la aceptas</b>.",
         seguro: "El seguro está incluido desde el <b>Viaje Completo</b>. En el resto puedes añadir el <b>seguro médico</b> como extra opcional.",
         default: "¡Buena pregunta! Para darte la mejor respuesta, rellena el formulario «Diseña mi viaje» y nuestro equipo te ayudará. También puedes escribirnos a <b>hola@exploryaa.com</b>."
       };

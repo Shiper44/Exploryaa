@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis viajes | Exploryaa</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0B0B0B" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Doto:wght@900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black: #0B0B0B; --dark: #1A1A1A; --grey: #9A9A9A; --gold: #D4AF37; --gold-light: #E8CB6A; --line: rgba(255,255,255,0.1); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--black); color: #fff; font-family: "Inter", system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    header { padding: 16px; max-width: 1100px; width: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    header img { height: 62px; width: auto; display: block; }
+    header .volver { font-size: 0.9rem; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 10px 18px; min-height: 44px; display: inline-flex; align-items: center; }
+    header .volver:hover { border-color: var(--gold); color: var(--gold); }
+    main { flex: 1; display: grid; place-items: center; padding: 24px 16px 64px; }
+    .card { width: 100%; max-width: 460px; background: var(--dark); border: 1px solid var(--line); border-radius: 24px; padding: 36px 30px; }
+    .led { font-family: "Doto", ui-monospace, monospace; font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 0 6px rgba(212,175,55,0.5); margin: 0 0 8px; }
+    h1 { font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(2rem, 6vw, 2.6rem); line-height: 1.05; margin: 0 0 12px; }
+    p { color: #cfcfcf; margin: 0 0 22px; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; }
+    input { width: 100%; min-height: 48px; padding: 12px 16px; border-radius: 12px; border: 1px solid #3a3a3a; background: #111; color: #fff; font: inherit; }
+    input:disabled { opacity: 0.55; }
+    .btn { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 14px; padding: 12px 24px; border-radius: 999px; font: inherit; font-weight: 600; border: 1px solid transparent; cursor: not-allowed; }
+    .btn--gold { background: var(--gold); color: var(--black); opacity: 0.55; }
+    .btn--google { background: #fff; color: #1f1f1f; opacity: 0.55; }
+    .sep { display: flex; align-items: center; gap: 12px; color: var(--grey); font-size: 0.8rem; margin: 18px 0 4px; }
+    .sep::before, .sep::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .aviso { margin-top: 22px; padding: 14px 16px; border-radius: 12px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.4); font-size: 0.88rem; color: #e6e6e6; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" aria-label="Exploryaa, volver al inicio"><img src="/logo.png" alt="Exploryaa – Travel Online Agency" width="117" height="62" /></a>
+    <a class="volver" href="/">← Volver a la web</a>
+  </header>
+  <main>
+    <div class="card">
+      <p class="led">Mis viajes</p>
+      <h1>Entra en tu área</h1>
+      <p>Sin contraseñas: te enviamos un enlace a tu correo para entrar. Tu cuenta se crea sola cuando nos envías tu primer viaje.</p>
+      <!-- El acceso con enlace mágico y con Google se activa en la fase 3 -->
+      <form onsubmit="return false" aria-describedby="avisoProximamente">
+        <label for="email">Tu email</label>
+        <input id="email" type="email" autocomplete="email" placeholder="tu@correo.com" disabled />
+        <button class="btn btn--gold" type="submit" disabled>Enviarme el enlace</button>
+      </form>
+      <div class="sep">o</div>
+      <button class="btn btn--google" type="button" disabled>Entrar con Google</button>
+      <div class="aviso" id="avisoProximamente">Estamos preparando tu área de cliente. Muy pronto podrás ver aquí tus viajes, propuestas, reservas y pagos. Mientras tanto, te mantendremos al día por correo.</div>
+    </div>
+  </main>
+</body>
+</html>

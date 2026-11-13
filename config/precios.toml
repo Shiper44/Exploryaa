@@ -1,0 +1,68 @@
+# =====================================================================
+#  PRECIOS DE EXPLORYAA
+#  Cambia aquí los precios y se actualizan en toda la web (tarjetas,
+#  formulario, resumen, asistente y, más adelante, los cobros).
+#  Todos los importes son en euros, con IVA incluido. Sin el símbolo €.
+#  Después de guardar, reinicia el servidor (en Render: "Manual Deploy").
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# A) PACK PLANIFICACIÓN: el cliente paga por el diseño del viaje y
+#    reserva por su cuenta. Precio POR VIAJE.
+#    Precio = desde + (días por encima de dias_incluidos × por_dia_extra)
+#             + (destinos adicionales × por_destino_extra)
+# ---------------------------------------------------------------------
+[planificacion]
+dias_incluidos = 4          # el precio "desde" cubre viajes de hasta 4 días
+por_destino_extra = 10      # € por cada destino adicional
+
+[planificacion.niveles.simple]
+nombre = "Simple"
+desde = 29
+por_dia_extra = 5
+revisiones = 0
+entrega = "PDF en 72 h"
+
+[planificacion.niveles.estandar]
+nombre = "Estándar"
+desde = 59
+por_dia_extra = 8
+revisiones = 1
+entrega = "48 h"
+
+[planificacion.niveles.premium]
+nombre = "Premium"
+desde = 99
+por_dia_extra = 12
+revisiones = 2
+entrega = "24-48 h"
+
+# ---------------------------------------------------------------------
+# B) PAQUETES CON RESERVAS: precio POR PERSONA. "desde" es lo que se
+#    anuncia en la web. El precio final = coste real del viaje
+#    + honorarios; lo calcula la propuesta y lo revisas en /admin.
+#    revisiones = -1 significa ilimitadas.
+# ---------------------------------------------------------------------
+[paquetes.mini]
+nombre = "Mini Escapada 2D1N"
+desde = 199
+honorarios = 49
+revisiones = 1
+
+[paquetes.express]
+nombre = "Itinerario Express"
+desde = 449
+honorarios = 89
+revisiones = 1
+
+[paquetes.completo]
+nombre = "Viaje Completo"
+desde = 1290
+honorarios = 149
+revisiones = 2
+
+[paquetes.premium]
+nombre = "Exploryaa Premium"
+desde = 2990
+honorarios = 299
+revisiones = -1
